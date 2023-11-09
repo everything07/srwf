@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
+use App\Models\DeferredRecord;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -26,10 +26,10 @@ class PostController extends Controller
         return view('posts.deferredReport', compact('stations'));
     }
         
-    public function store(Request $request, Post $post)
+    public function store(Request $request, DeferredRecord $deferredrecord)
     {
         $input = $request['post'];
-        $post->fill($input)->save();
+        $deferredrecord->fill($input)->save();
         return view('posts.index');
     }
 }

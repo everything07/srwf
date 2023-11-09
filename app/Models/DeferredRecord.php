@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model
+class DeferredRecord extends Model
 {
     use HasFactory;
     
-    protected $table = 'deferred_record';
+    protected $table = 'DeferredRecord';
     
     protected $fillable = [
         'enpoyeeNumber',

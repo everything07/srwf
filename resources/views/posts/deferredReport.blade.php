@@ -26,7 +26,7 @@
         <div>
             <h2>一覧</h2>
             <div>
-                <a href="#">列車遅延報告書</a>
+                <a href="/deferred">列車遅延報告書</a>
                 <a href="#">乗務報告書</a>
                 <a href="#">発光信号動作報告書</a>
                 <a href="#">非常ブレーキ動作報告書</a>
@@ -50,19 +50,23 @@
                      <input type="number" name="post[enpoyeeNumber]" value="3033"><br>
                 </div>
                 <div>
+                    <p>遅延時間の報告の仕方</p>
+                    <p>例）３０秒延→３０、１分３０秒→１３０、１０分延→１０００</p>
+                    <p>６０分以上の場合は時間に換算し、１時間２０分延の場合は１２０００とすること</p>
+                    
                     @foreach($stations as $key => $station)
                         <label for="{{ $key }}Arrival"> {{ $station }} 着・発</label>
-                        <input type="text" name="post[{{ $key }}ArrivalTime]" placeholder="MM:SS" pattern="([0-5][0-9]):[0-5][0-9]" >
-                        <input type="text" name="post[{{ $key }}DepartureTime]" placeholder="MM:SS" pattern="([0-5][0-9]):[0-5][0-9]" ><br>
+                        <input type="text" name="post[{{ $key }}Arrival]">
+                        <input type="text" name="post[{{ $key }}Departure]"><br>
                     @endforeach
                     <label for="occurrenceReasons">事由</label>
-                    <input type="checkbox" name="post[occurrenceReasons]" value="1">折り返し遅れ
-                    <input type="checkbox" name="post[occurrenceReasons]" value="2"> 多客
-                    <input type="checkbox" name="post[occurrenceReasons]" value="3"> 接続・待ち合わせ遅れ
-                    <input type="checkbox" name="post[occurrenceReasons]" value="4"> 車両点検<br>
+                    <input type="checkbox" name="post[occurrenceReasons]" value="折り返し遅れ">折り返し遅れ
+                    <input type="checkbox" name="post[occurrenceReasons]" value="多客"> 多客
+                    <input type="checkbox" name="post[occurrenceReasons]" value="接続・待合せ遅れ"> 接続・待ち合わせ遅れ
+                    <input type="checkbox" name="post[occurrenceReasons]" value="車両点検"> 車両点検<br>
 
                     <label for="remarks">備考</label>
-                    <textarea name="post[remarks]" rows="4" required></textarea><br>
+                    <textarea name="post[remarks]" rows="4"></textarea><br>
                 </div>
                 <input type="submit" value="報告"/>
             </form>
