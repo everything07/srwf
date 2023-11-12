@@ -11,34 +11,36 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('deferred_record', function (Blueprint $table) {
+        Schema::table('deferred_records', function (Blueprint $table) {
             //
-            $table->Integer('sinaArrivalMinute')->change();
-            $table->Integer('sinaDepartureMinute')->change();
-            $table->Integer('tokyoArrivalMinute')->change();
-            $table->Integer('tokyoDepartureMinute')->change();
-            $table->Integer('uenoArrivalMinute')->change();
-            $table->Integer('uenoDepartureMinute')->change();
-            $table->Integer('ikebukuroArrivalMinute')->change();
-            $table->Integer('sinjukuArrivalMinute')->change();
-            $table->Integer('sinjukuDepartureMinute')->change();
-            $table->Integer('osakiArrivalMinute')->change();
-            $table->Integer('osakiDepartureMinute')->change();
+            $table->Integer('sina_arrival_minute')->change();
+            $table->Integer('sina_departure_minute')->change();
+            $table->Integer('tokyo_arrival_minute')->change();
+            $table->Integer('tokyo_departure_minute')->change();
+            $table->Integer('ueno_arrival_minute')->change();
+            $table->Integer('ueno_departure_minute')->change();
+            $table->Integer('ikebukuro_arrival_minute')->change();
+            $table->Integer('ikebukuro_departure_minute')->change();
+            $table->Integer('sinjuku_arrival_minute')->change();
+            $table->Integer('sinjuku_departure_minute')->change();
+            $table->Integer('osaki_arrival_minute')->change();
+            $table->Integer('osaki_departure_minute')->change();
         });
         
-        Schema::table('deferred_record', function (Blueprint $table) {
+        Schema::table('deferred_records', function (Blueprint $table) {
             //
-            $table->Integer('sinaArrivalSecond');
-            $table->Integer('sinaDepartureSecond');
-            $table->Integer('tokyoArrivalSecond');
-            $table->Integer('tokyoDepartureSecond');
-            $table->Integer('uenoArrivalSecond');
-            $table->Integer('uenoDepartureSecond');
-            $table->Integer('ikebukuroArrivalSecond');
-            $table->Integer('sinjukuArrivalSecond');
-            $table->Integer('sinjukuDepartureSecond');
-            $table->Integer('osakiArrivalSecond');
-            $table->Integer('osakiDepartureSecond');
+            $table->Integer('sina_arrival_second');
+            $table->Integer('sina_departure_second');
+            $table->Integer('tokyo_arrival_second');
+            $table->Integer('tokyo_departure_second');
+            $table->Integer('ueno_arrival_second');
+            $table->Integer('ueno_departure_second');
+            $table->Integer('ikebukuro_arrival_second');
+            $table->Integer('ikebukuro_departure_second');
+            $table->Integer('sinjuku_arrival_second');
+            $table->Integer('sinjuku_departure_second');
+            $table->Integer('osaki_arrival_second');
+            $table->Integer('osaki_departure_second');
         });
     }
 
@@ -47,19 +49,20 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('deferred_record', function (Blueprint $table) {
+        Schema::table('deferred_records', function (Blueprint $table) {
             //
-            $table->time('sinaArrivalMinute')->change();
-            $table->time('sinaDepartureMinute')->change();
-            $table->time('tokyoArrivalMinute')->change();
-            $table->time('tokyoDepartureMinute')->change();
-            $table->time('uenoArrivalMinute')->change();
-            $table->time('uenoDepartureMinute')->change();
-            $table->time('ikebukuroArrivalMinute')->change();
-            $table->time('sinjukuArrivalMinute')->change();
-            $table->time('sinjukuDepartureMinute')->change();
-            $table->time('osakiArrivalMinute')->change();
-            $table->time('osakiDepartureMinute')->change();
+            $table->time('sina_arrival_minute')->change();
+            $table->time('sina_departure_minute')->change();
+            $table->time('tokyo_arrival_minute')->change();
+            $table->time('tokyo_departure_minute')->change();
+            $table->time('ueno_arrival_minute')->change();
+            $table->time('ueno_departure_minute')->change();
+            $table->time('ikebukuro_arrival_minute')->change();
+            $table->time('ikebukuro_departure_minute')->change();
+            $table->time('sinjuku_arrival_minute')->change();
+            $table->time('sinjuku_departure_minute')->change();
+            $table->time('osaki_arrival_minute')->change();
+            $table->time('osaki_departure_minute')->change();
         });
     }
 };

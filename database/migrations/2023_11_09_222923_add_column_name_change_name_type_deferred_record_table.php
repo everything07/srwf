@@ -11,20 +11,21 @@ return new class extends Migration
      */
     public function up()
     {
-        // Schema::table('deferred_record', function (Blueprint $table) {
-        //     //
-        //     $table->renameColumn('sinaArrival','sinaArrivalMinute');
-        //     $table->renameColumn('sinaDeparture', 'sinaDepartureMinute');
-        //     $table->renameColumn('tokyoArrival', 'tokyoArrivalMinute');
-        //     $table->renameColumn('tokyoDeparture', 'tokyoDepartureMinute');
-        //     $table->renameColumn('uenoArrival', 'uenoArrivalMinute');
-        //     $table->renameColumn('uenoDeparture', 'uenoDepartureMinute');
-        //     $table->renameColumn('ikebukuroArrival', 'ikebukuroArrivalMinute');
-        //     $table->renameColumn('sinjukuArrival', 'sinjukuArrivalMinute');
-        //     $table->renameColumn('sinjukuDeparture', 'sinjukuDepartureMinute');
-        //     $table->renameColumn('osakiArrival', 'osakiArrivalMinute');
-        //     $table->renameColumn('osakiDeparture', 'osakiDepartureMinute');
-        // });
+        Schema::table('deferred_records', function (Blueprint $table) {
+            //
+            $table->renameColumn('sinaArrival','sina_arrival_minute');
+            $table->renameColumn('sinaDeparture', 'sina_departure_minute');
+            $table->renameColumn('tokyoArrival', 'tokyo_arrival_minute');
+            $table->renameColumn('tokyoDeparture', 'tokyo_departure_minute');
+            $table->renameColumn('uenoArrival', 'ueno_arrival_minute');
+            $table->renameColumn('uenoDeparture', 'ueno_departure_minute');
+            $table->renameColumn('ikebukuroArrival', 'ikebukuro_arrival_minute');
+            $table->renameColumn('ikebukuroDeparture', 'ikebukuro_departure_minute');
+            $table->renameColumn('sinjukuArrival', 'sinjuku_arrival_minute');
+            $table->renameColumn('sinjukuDeparture', 'sinjuku_departure_minute');
+            $table->renameColumn('osakiArrival', 'osaki_arrival_minute');
+            $table->renameColumn('osakiDeparture', 'osaki_departure_minute');
+        });
         
        
     }
@@ -35,7 +36,7 @@ return new class extends Migration
     public function down()
     {
             
-        Schema::table('deferred_record', function (Blueprint $table) {
+        Schema::table('deferred_records', function (Blueprint $table) {
             //
             
         });

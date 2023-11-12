@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('deferred_record', function (Blueprint $table) {
+        Schema::create('deferred_records', function (Blueprint $table) {
             $table->id();
-            $table->integer('enpoyeeNumber');
-            $table->char('trainNumber');
-            $table->char('carsNumber');
-            $table->char('jobNumber');
+            $table->integer('employee_number');
+            $table->char('train_number');
+            $table->char('cars_number');
+            $table->char('job_number');
             $table->time('sinaArrival')->nullable();
             $table->time('sinaDeparture')->nullable();
             $table->time('tokyoArrival')->nullable();
@@ -29,7 +29,6 @@ return new class extends Migration
             $table->time('sinjukuDeparture')->nullable();
             $table->time('osakiArrival')->nullable();
             $table->time('osakiDeparture')->nullable();
-            $table->string('occurrenceReasons', 50);
             $table->text('remarks');
             $table->timestamps();
         });
@@ -40,6 +39,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('deferred_record');
+        Schema::dropIfExists('deferred_records');
     }
 };

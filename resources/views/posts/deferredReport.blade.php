@@ -41,30 +41,40 @@
                 @csrf
                  <div>
                      <label>列車番号</label>
-                     <input type="text" name="post[trainNumber]"><br>
+                     <input type="text" name="post[train_number]"><br>
                      <label>車両番号</label>
-                     <input type="text" name="post[carsNumber]"><br>
+                     <input type="text" name="post[cars_number]"><br>
                      <label>仕業</label>
-                     <input type="text" name="post[jobNumber]"><br>
+                     <input type="text" name="post[job_number]"><br>
                      <p>名前</p>
-                     <input type="number" name="post[enpoyeeNumber]" value="3033"><br>
+                     <input type="int" name="post[employee_number]" value=3003><br>
                 </div>
                 <div>
                     <p>遅延時間の報告の仕方</p>
-                    <p>例）３０秒延→３０、１分３０秒→１３０、１０分延→１０００</p>
-                    <p>６０分以上の場合は時間に換算し、１時間２０分延の場合は１２０００とすること</p>
+                    <p>(MM)分で入力すること→例）　１２０</p>
+                    <p>秒数は選択式です</p>
                     
                     @foreach($stations as $key => $station)
-                        <label for="{{ $key }}Arrival"> {{ $station }} 着・発</label>
-                        <input type="text" name="post[{{ $key }}Arrival]">
-                        <input type="text" name="post[{{ $key }}Departure]"><br>
+                        <label> {{ $station }} 着・発</label>
+                        <input type="int" name="post[{{ $key }}_arrival_minute]">
+                        <select name="post[{{$key}}_arrival_second]">
+                            <option value="00">00</option>
+                            <option value="00">30</option>
+                        </select>
+                        <input type="int" name="post[{{ $key }}_departure_minute]">
+                        <select name="post[{{$key}}_departure_second]">
+                            <option value="00">00</option>
+                            <option value="30">30</option>
+                        </select><br>
                     @endforeach
-                    <label for="occurrenceReasons">事由</label>
-                    <input type="checkbox" name="post[occurrenceReasons]" value="折り返し遅れ">折り返し遅れ
-                    <input type="checkbox" name="post[occurrenceReasons]" value="多客"> 多客
-                    <input type="checkbox" name="post[occurrenceReasons]" value="接続・待合せ遅れ"> 接続・待ち合わせ遅れ
-                    <input type="checkbox" name="post[occurrenceReasons]" value="車両点検"> 車両点検<br>
-
+                    <label>事由</label>
+                    @foreach($occurrence_reasons as $occurrence_reason)
+                        <lavel>
+                            <input type="checkbox" name="reasons_array[]" value="{{ $occurrence_reason->id}}">
+                                {{$occurrence_reason->occurrence_reason}}
+                            </input><br>
+                        </lavel>
+                    @endforeach
                     <label for="remarks">備考</label>
                     <textarea name="post[remarks]" rows="4"></textarea><br>
                 </div>
