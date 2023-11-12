@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\DeferredRecord;
+use App\Models\OccurrenceReason;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -12,8 +13,8 @@ class PostController extends Controller
         return view('posts.index');
     }
     
-    public function deferred()
-    {
+    public function deferred(OccurrenceReason $occurrencereason)
+    { 
         $stations = [
         'sina' => '品川',
         'tokyo' => '東京',
@@ -23,13 +24,18 @@ class PostController extends Controller
         'osaki' => '大崎',
          ];
          
-        return view('posts.deferredReport', compact('stations'));
+        return view('posts.deferredReport', compact('stations'))->with(['occurrence_reasons' => $occurrencereason->get()]);
     }
         
     public function store(Request $request, DeferredRecord $deferredrecord)
     {
-        $input = $request['post'];
-        $deferredrecord->fill($input)->save();
-        return view('posts.index');
+       $input_post = $request['post'];
+       $input_reasons = $request->reasons_array;
+       
+       $deferredrecord->fill($input_post)->save();
+       
+       $deferredrecord->occurrencereason()->attach($input_reasons);
+       
+       return view('posts.index');
     }
 }
