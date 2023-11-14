@@ -24,9 +24,9 @@
     </header>
     <saide>
         <div>
-            <h2>一覧</h2>
+            <h2>報告書</h2>
             <div>
-                <a href="/deferred">列車遅延報告書</a>
+                <a href="/deferred/Report">列車遅延報告書</a>
                 <a href="#">乗務報告書</a>
                 <a href="#">発光信号動作報告書</a>
                 <a href="#">非常ブレーキ動作報告書</a>
@@ -56,14 +56,16 @@
                     
                     @foreach($stations as $key => $station)
                         <label> {{ $station }} 着・発</label>
+                         <input type="int" name="post[{{ $key }}_departure_minute]">
+                        <select name="post[{{$key}}_departure_second]">
+                            <option value=" ">-</option>
+                            <option value="0">00</option>
+                            <option value="30">30</option>
+                        </select>
                         <input type="int" name="post[{{ $key }}_arrival_minute]">
                         <select name="post[{{$key}}_arrival_second]">
-                            <option value="00">00</option>
-                            <option value="00">30</option>
-                        </select>
-                        <input type="int" name="post[{{ $key }}_departure_minute]">
-                        <select name="post[{{$key}}_departure_second]">
-                            <option value="00">00</option>
+                            <option value=" ">-</option>
+                            <option value="0">00</option>
                             <option value="30">30</option>
                         </select><br>
                     @endforeach

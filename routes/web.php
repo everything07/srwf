@@ -16,5 +16,8 @@ use App\Http\Controllers\PostController;
 */
 
 Route::get('/', [PostController::class, 'index']);
-Route::get('/deferred', [PostController::class, 'deferred'] );
+// Route::get('deferred/detail/{deferred_record}', [postController::class, 'detail']);
+Route::get('deferred/detail/{deferred_record}', [PostController::class, 'detail']);
+Route::get('/deferred/table',[PostController::class,'table']);
+Route::get('/deferred/Report', [PostController::class, 'Report']);
 Route::post('/posts', [PostController::class, 'store']);
