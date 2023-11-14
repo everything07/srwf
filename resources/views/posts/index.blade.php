@@ -24,9 +24,9 @@
     </header>
     <saide>
         <div>
-            <h2>一覧</h2>
+            <h2>報告書</h2>
             <div>
-                <a href="/deferred">列車遅延報告書</a>
+                <a href="/deferred/Report">列車遅延報告書</a>
                 <a href="#">乗務報告書</a>
                 <a href="#">発光信号動作報告書</a>
                 <a href="#">非常ブレーキ動作報告書</a>
@@ -34,5 +34,11 @@
             </div>
         </div>
     </saide>
+    <div>
+        <h2>報告内容</h2>
+            <div>
+                <a href="/deferred/table">遅延報告</a>
+            </div>
+    </div>
 </body>
 </html>

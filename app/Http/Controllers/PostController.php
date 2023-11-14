@@ -13,7 +13,7 @@ class PostController extends Controller
         return view('posts.index');
     }
     
-    public function deferred(OccurrenceReason $occurrencereason)
+    public function Report(OccurrenceReason $occurrencereason)
     { 
         $stations = [
         'sina' => '品川',
@@ -38,4 +38,37 @@ class PostController extends Controller
        
        return view('posts.index');
     }
+    
+    public function table(DeferredRecord $deferredrecord)
+    {
+     
+        // $arrival_times = [];
+        // $departure_times = [];
+        
+        // foreach ($stations as $key => $station) {
+        //     $arrival_minute_key = "${key}_arrival_minute";
+        //     $arrival_second_key = "${key}_arrival_second";
+        //     $arrival_time = $deferredrecord[$arrival_minute_key] . ':' . $deferredrecord[$arrival_second_key];
+        //     $arrival_times[$key] = $arrival_time;
+        // }
+        // foreach ($stations as $key => $station) {
+        //     $arrival_minute_key = "${key}_departure_minute";
+        //     $arrival_second_key = "${key}_departure_second";
+        //     $arrival_time = $deferredrecord[$arrival_minute_key] . ':' . $deferredrecord[$arrival_second_key];
+        //     $arrival_times[$key] = $arrival_time;
+        // }
+    return view('posts.deferredList')->with(['deferred_records' => $deferredrecord->get()]);
+
+    }
+    
+    // public function detail(DeferredRecord $deferredrecord)
+    // {
+    //     return view('post/deferredDetail')->with(['deferredrecord' => $deferredrecord]);
+    // }
+    public function detail(DeferredRecord $deferred_record)
+    {
+        return view('posts.deferredDetail')->with(['deferredrecord' => $deferred_record]);
+    }
+
+
 }

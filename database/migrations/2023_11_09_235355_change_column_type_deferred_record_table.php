@@ -29,18 +29,18 @@ return new class extends Migration
         
         Schema::table('deferred_records', function (Blueprint $table) {
             //
-            $table->Integer('sina_arrival_second');
-            $table->Integer('sina_departure_second');
-            $table->Integer('tokyo_arrival_second');
-            $table->Integer('tokyo_departure_second');
-            $table->Integer('ueno_arrival_second');
-            $table->Integer('ueno_departure_second');
-            $table->Integer('ikebukuro_arrival_second');
-            $table->Integer('ikebukuro_departure_second');
-            $table->Integer('sinjuku_arrival_second');
-            $table->Integer('sinjuku_departure_second');
-            $table->Integer('osaki_arrival_second');
-            $table->Integer('osaki_departure_second');
+            $table->Integer('sina_arrival_second')->nullable();
+            $table->Integer('sina_departure_second')->nullable();
+            $table->Integer('tokyo_arrival_second')->nullable();
+            $table->Integer('tokyo_departure_second')->nullable();
+            $table->Integer('ueno_arrival_second')->nullable();
+            $table->Integer('ueno_departure_second')->nullable();
+            $table->Integer('ikebukuro_arrival_second')->nullable();
+            $table->Integer('ikebukuro_departure_second')->nullable();
+            $table->Integer('sinjuku_arrival_second')->nullable();
+            $table->Integer('sinjuku_departure_second')->nullable();
+            $table->Integer('osaki_arrival_second')->nullable();
+            $table->Integer('osaki_departure_second')->nullable();
         });
     }
 
