@@ -43,11 +43,11 @@
                 <div>
                     <div>
                         <lavel>社員番号</lavel>
-                        <p>{{$deferredrecord['employee_number']}}</p>
+                        <p>{{$deferred_record['employee_number']}}</p>
                         <lavel>名前</lavel>
                         <p>マック太郎</p>
                         <lavel>仕業</lavel>
-                        <p>{{$deferredrecord['job_number']}}</p>
+                        <p>{{$deferred_record['job_number']}}</p>
                     </div>
                     <table>
                         <tr>
@@ -60,34 +60,41 @@
                             <th>大着</th><th>大発</th>
                         </tr>
                         <tr>
-                            <th>{{$deferredrecord['train_number']}}</th>
-                            <th>{{$deferredrecord['cars_number']}}</th>
-                            <th>{{$deferredrecord['sina_departure_minute']}}:{{$deferredrecord['sina_departure_second']}}</th>
-                            <th>{{$deferredrecord['sina_arrival_minute']}}:{{$deferredrecord['sina_arrival_second']}}</th>
-                            <th>{{$deferredrecord['tokyo_departure_minute']}}:{{$deferredrecord['tokyo_departure_second']}}</th>
-                            <th>{{$deferredrecord['tokyo_arrival_minute']}}:{{$deferredrecord['tokyo_arrival_second']}}</th>
-                            <th>{{$deferredrecord['ueno_departure_minute']}}:{{$deferredrecord['ueno_departure_second']}}</th>
-                            <th>{{$deferredrecord['ueno_arrival_minute']}}:{{$deferredrecord['ueno_arrival_second']}}</th>
-                            <th>{{$deferredrecord['ikebukuro_departure_minute']}}:{{$deferredrecord['ikebukuro_departure_second']}}</th>
-                            <th>{{$deferredrecord['ikebukuro_arrival_minute']}}:{{$deferredrecord['ikebukuro_arrival_second']}}</th>
-                            <th>{{$deferredrecord['sinjuku_departure_minute']}}:{{$deferredrecord['sinjuku_departure_second']}}</th>
-                            <th>{{$deferredrecord['sinjuku_arrival_minute']}}:{{$deferredrecord['sinjuku_arrival_second']}}</th>
-                            <th>{{$deferredrecord['osaki_departure_minute']}}:{{$deferredrecord['osaki_departure_second']}}</th>
-                            <th>{{$deferredrecord['osaki_arrival_minute']}}:{{$deferredrecord['osaki_arrival_second']}}</th>
+                            <th>{{$deferred_record['train_number']}}</th>
+                            <th>{{$deferred_record['cars_number']}}</th>
+                            <td>{{$deferred_record->formatTime("sina_departure")}}</td>
+                            <td>{{$deferred_record->formatTime("sina_arrival")}}</td>
+                            <td>{{$deferred_record->formatTime("tokyo_departure")}}</td>
+                            <td>{{$deferred_record->formatTime("tokyo_arrival")}}</td>
+                            <td>{{$deferred_record->formatTime("ueno_departure")}}</td>
+                            <td>{{$deferred_record->formatTime("ueno_arrival")}}</td>
+                            <td>{{$deferred_record->formatTime("ikebukuro_departure")}}</td>
+                            <td>{{$deferred_record->formatTime("ikebukuro_arrival")}}</td>
+                            <td>{{$deferred_record->formatTime("sinjuku_departure")}}</td>
+                            <td>{{$deferred_record->formatTime("sinjuku_arrival_")}}</td>
+                            <td>{{$deferred_record->formatTime("osaki_departure")}}</td>
+                            <td>{{$deferred_record->formatTime("osaki_arrival")}}</td>
                         </tr>
                     </table>
                     <div>
                         <lavel>事由</lavel><br>
-                        <p>@foreach($deferredrecord->occurrencereason as $occurrencereason)
+                        <p>
+                            @foreach($deferred_record->occurrencereason as $occurrencereason)
                             {{$occurrencereason->occurrence_reason}}
-                        @endforeach
+                            @endforeach
                         </p>
                         
                         <lavel>備考</lavel>
-                        <p>{{$deferredrecord['remarks']}}</p>
+                        <p>{{$deferred_record['remarks']}}</p>
                     </div>
                 </div>
         </div>
     </main>
+    <div>
+        <a href="/">トップへ</a>
+        <a href="/deferred/table">戻る</a>
+        <a href="/deferred/edit/{{$deferred_record->id}}">修正・削除</a>
+        <!--<a href="/deferred/delete/{{$deferred_record->id}}">削除</a>-->
+    </div>
 </body>
 </html>
