@@ -59,13 +59,13 @@
                          <input type="int" name="post[{{ $key }}_departure_minute]">
                         <select name="post[{{$key}}_departure_second]">
                             <option value=" ">-</option>
-                            <option value="0">00</option>
+                            <option value="00">00</option>
                             <option value="30">30</option>
                         </select>
                         <input type="int" name="post[{{ $key }}_arrival_minute]">
                         <select name="post[{{$key}}_arrival_second]">
                             <option value=" ">-</option>
-                            <option value="0">00</option>
+                            <option value="00">00</option>
                             <option value="30">30</option>
                         </select><br>
                     @endforeach

@@ -13,5 +13,14 @@ class OccurrenceReason extends Model
      public function deferredrecord() {
         return $this->belongsToMany(DeferredRecord::class);
     }
+    
+    public function reasonCompare($target1, $target2) {
+        if(in_array($target1, $target2->pluck('id')->toArray()))
+        {
+            return "checked";
+        }else{
+            return " ";
+        }
+    }
      
 }

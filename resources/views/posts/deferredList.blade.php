@@ -53,21 +53,21 @@
                         </tr>
                         @foreach($deferred_records as $deferred_record)
                         <tr>
-                            <th><a href="{{ url('deferred/detail', $deferred_record->id) }}">{{ $deferred_record->train_number }}</a>
-</th>
+                            <th><a href="/deferred/detail/{{$deferred_record->id}}">{{ $deferred_record->train_number }}</a></th>
+
                             <th>{{$deferred_record['cars_number']}}</th>
-                            <th>{{$deferred_record['sina_departure_minute']}}:{{$deferred_record['sina_departure_second']}}</th>
-                            <th>{{$deferred_record['sina_arrival_minute']}}:{{$deferred_record['sina_arrival_second']}}</th>
-                            <th>{{$deferred_record['tokyo_departure_minute']}}:{{$deferred_record['tokyo_departure_second']}}</th>
-                            <th>{{$deferred_record['tokyo_arrival_minute']}}:{{$deferred_record['tokyo_arrival_second']}}</th>
-                            <th>{{$deferred_record['ueno_departure_minute']}}:{{$deferred_record['ueno_departure_second']}}</th>
-                            <th>{{$deferred_record['ueno_arrival_minute']}}:{{$deferred_record['ueno_arrival_second']}}</th>
-                            <th>{{$deferred_record['ikebukuro_departure_minute']}}:{{$deferred_record['ikebukuro_departure_second']}}</th>
-                            <th>{{$deferred_record['ikebukuro_arrival_minute']}}:{{$deferred_record['ikebukuro_arrival_second']}}</th>
-                            <th>{{$deferred_record['sinjuku_departure_minute']}}:{{$deferred_record['sinjuku_departure_second']}}</th>
-                            <th>{{$deferred_record['sinjuku_arrival_minute']}}:{{$deferred_record['sinjuku_arrival_second']}}</th>
-                            <th>{{$deferred_record['osaki_departure_minute']}}:{{$deferred_record['osaki_departure_second']}}</th>
-                            <th>{{$deferred_record['osaki_arrival_minute']}}:{{$deferred_record['osaki_arrival_second']}}</th>
+                            <td>{{$deferred_record->formatTime("sina_departure")}}</td>
+                            <td>{{$deferred_record->formatTime("sina_arrival")}}</td>
+                            <td>{{$deferred_record->formatTime("tokyo_departure")}}</td>
+                            <td>{{$deferred_record->formatTime("tokyo_arrival")}}</td>
+                            <td>{{$deferred_record->formatTime("ueno_departure")}}</td>
+                            <td>{{$deferred_record->formatTime("ueno_arrival")}}</td>
+                            <td>{{$deferred_record->formatTime("ikebukuro_departure")}}</td>
+                            <td>{{$deferred_record->formatTime("ikebukuro_arrival")}}</td>
+                            <td>{{$deferred_record->formatTime("sinjuku_departure")}}</td>
+                            <td>{{$deferred_record->formatTime("sinjuku_arrival_")}}</td>
+                            <td>{{$deferred_record->formatTime("osaki_departure")}}</td>
+                            <td>{{$deferred_record->formatTime("osaki_arrival")}}</td>
                            
                         </tr>
                         @endforeach
