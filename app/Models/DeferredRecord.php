@@ -20,7 +20,7 @@ class DeferredRecord extends Model
     // protected $table = 'deferred_records';
     
     protected $fillable = [
-        // 'id',
+        'report_date',
         'employee_number',
         'train_number',
         'cars_number',
@@ -51,6 +51,8 @@ class DeferredRecord extends Model
         'osaki_arrival_second',
         'osaki_departure_second'
     ];
+    
+   
     
     public function formatTime($target)
     {
