@@ -42,12 +42,10 @@
                 </div>
                 <div>
                     <div>
-                        <lavel>社員番号</lavel>
-                        <p>{{$deferred_record['employee_number']}}</p>
-                        <lavel>名前</lavel>
-                        <p>マック太郎</p>
-                        <lavel>仕業</lavel>
-                        <p>{{$deferred_record['job_number']}}</p>
+                        <lavel>社員番号__{{$deferred_record['employee_number']}}</lavel><br>
+                        <lavel>名前__マック太郎</lavel><br>
+                        <lavel>報告日__{{$deferred_record['report_date']}}</lavel><br>
+                        <lavel>仕業__{{$deferred_record['job_number']}}</lavel><br>
                     </div>
                     <table>
                         <tr>

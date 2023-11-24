@@ -39,6 +39,7 @@
             <h1>列車遅延報告 一覧</h1>
                 <div>
                     <!--検索機能-->
+                    
                 </div>
                 <div>
                     <table>
@@ -74,6 +75,7 @@
                     </table>
                 </div>
         </div>
+           <a href="/">トップへ</a>
     </main>
 </body>
 </html>

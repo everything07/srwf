@@ -46,8 +46,9 @@
                      <input type="text" name="post[cars_number]"><br>
                      <label>仕業</label>
                      <input type="text" name="post[job_number]"><br>
-                     <p>名前</p>
-                     <input type="int" name="post[employee_number]" value=3003><br>
+                     <label>社員番号<input type="int" name="post[employee_number]" value=3003>：名前　</label><br>
+                     <label>日付</label>
+                     <input type="date" name="post[report_date]" value={{date('Y-m-d') }}><br>
                 </div>
                 <div>
                     <p>遅延時間の報告の仕方</p>
@@ -82,7 +83,7 @@
                 </div>
                 <input type="submit" value="報告"/>
             </form>
-           
+           <a href="/">トップへ</a>
         </div>
     </main>
 </body>

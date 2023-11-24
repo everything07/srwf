@@ -44,9 +44,7 @@ class PostController extends Controller
     
     public function table(DeferredRecord $deferred_record)
     {
-     
-    
-    return view('posts.deferredList')->with(['deferred_records' => $deferred_record->get()]);
+        return view('posts.deferredList')->with(['deferred_records' => $deferred_record->orderBy('report_date', 'desc')->orderBy('created_at', 'asc')->get()]);
 
     }
     

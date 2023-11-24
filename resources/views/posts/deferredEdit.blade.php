@@ -50,6 +50,8 @@
                      <input type="text" name="post[job_number]" value="{{ $deferred_record->job_number }}"><br>
                      <p>名前</p>
                      <input type="number" name="post[employee_number]" value="{{ $deferred_record->employee_number }}"><br>
+                     <label>日付</label>
+                     <input type="date" name="post[report_date]" value="{{$deferred_record->report_date}}"><br>
                 </div>
                 <div>
                     <p>遅延時間の報告の仕方</p>
