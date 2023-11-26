@@ -42,10 +42,24 @@ class PostController extends Controller
        return view('posts.index');
     }
     
-    public function table(DeferredRecord $deferred_record)
+    
+    public function table(Request $request, DeferredRecord $deferred_record)
     {
-        return view('posts.deferredList')->with(['deferred_records' => $deferred_record->orderBy('report_date', 'desc')->orderBy('created_at', 'asc')->get()]);
+        $from = $request->input('from');
+        $until = $request->input('until');
 
+        $query = $deferred_record->orderBy('report_date', 'desc')->orderBy('created_at', 'asc');
+
+        if (isset($from) && isset($until)) 
+        {
+            $query->whereBetween('report_date', [$from, $until]);
+        }
+        
+        // $query->dd();
+
+        $deferred_list = $query->get();
+
+        return view('posts.deferredList', compact('deferred_list', 'from', 'until'))->with(['deferred_records' => $deferred_record]);
     }
     
     

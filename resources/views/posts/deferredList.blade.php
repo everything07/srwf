@@ -39,7 +39,16 @@
             <h1>列車遅延報告 一覧</h1>
                 <div>
                     <!--検索機能-->
-                    
+                    <form>
+                        <div>
+                            <label>日付検索</label>
+                            <input type="date" name="from" value="{{ $from }}">
+                            <span>~</span>
+                            <input type="date" name="until" value="{{ $until }}">
+                            <input type="submit" value="検索" >
+                        </div>
+                        
+                    </form>
                 </div>
                 <div>
                     <table>
@@ -52,7 +61,7 @@
                             <th>新着</th><th>新発</th>
                             <th>大着</th><th>大発</th>
                         </tr>
-                        @foreach($deferred_records as $deferred_record)
+                        @foreach($deferred_list as $deferred_record)
                         <tr>
                             <th><a href="/deferred/detail/{{$deferred_record->id}}">{{ $deferred_record->train_number }}</a></th>
 
