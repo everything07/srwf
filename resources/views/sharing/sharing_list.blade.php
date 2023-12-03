@@ -34,12 +34,25 @@
             </div>
         </div>
     </saide>
-    <div>
-        <h2>報告内容</h2>
-            <div>
-                <a href="/deferred/table">遅延報告</a>
-                <a href="/crewing_diary/list">乗務日記</a>
-            </div>
-    </div>
+    <main>
+        <div>
+            <h1>列車遅延報告 一覧</h1>
+                <div>
+                    <!--検索機能-->
+                    <form>
+                            <label>検索</label>
+                            
+                            <input type="submit" value="検索" >
+                        </div>
+                    </form>
+                </div>
+                <div>
+                    
+                    
+                    
+                </div>
+        </div>
+           <a href="/">トップへ</a>
+    </main>
 </body>
 </html>

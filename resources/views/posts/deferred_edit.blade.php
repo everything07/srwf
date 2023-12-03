@@ -30,7 +30,7 @@
                 <a href="#">乗務報告書</a>
                 <a href="#">発光信号動作報告書</a>
                 <a href="#">非常ブレーキ動作報告書</a>
-                <a href="#">乗務のヒント</a>
+                <a href="/crewing_diary">乗務日記</a>
             </div>
         </div>
     </saide>
