@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\SharingController;
 use App\Models\DeferredRecord;
 use App\Models\OccurrenceReason;
 /*
@@ -24,7 +25,7 @@ Route::get('/deferred/table',[PostController::class, 'table']);
 Route::get('/deferred/Report', [PostController::class, 'Report']);
 Route::post('/posts', [PostController::class, 'store']);
 
-Route::get('/crewing_diary/list', [PostController::class, 'list']);
-Route::post('/crewing_diary/confirm', [PostController::class, 'confirm']);
-Route::post('/crewing_diary/post', [PostController::class, 'post']);
-Route::get('/crewing_diary', [PostController::class, 'sharing']);
+Route::get('/crewing_diary/list', [SharingController::class, 'list_display']);
+Route::post('/crewing_diary/confirm', [SharingController::class, 'confirm']);
+Route::post('/crewing_diary/post', [SharingController::class, 'post']);
+Route::get('/crewing_diary', [SharingController::class, 'share']);

@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\DeferredRecord;
 use App\Models\OccurrenceReason;
-use App\Models\CrewingDiary;
-use App\Models\Tag;
 use Illuminate\Http\Request;
 
 
@@ -98,46 +96,5 @@ class PostController extends Controller
         return view('posts.index');
     }
     
-    
-    public function sharing()
-    {
-        return view('sharing.sharing_report');
-
-    }
-    
-    public function confirm(Request $request)
-    {
-        $inputs=$request->all();
-        
-        return view('sharing.sharing_confirm', ['inputs' => $inputs]);
-    }
-    
-    public function post(Request $request, CrewingDiary $crewingdiary, Tag $tag)
-    {
-        $input_post = $request['post'];
-        $input_tags = $request->tags;
-    
-        // 正規表現を使ってハッシュタグを抽出
-        preg_match_all('/#([a-zA-Z0-9０-９ぁ-んァ-ヶー一-龠]+)/u', $input_tags, $match);
-
-        // クルーの日誌を保存
-        $crewingdiary->fill($input_post)->save();
-
-        // ハッシュタグの処理
-        foreach ($match[1] as $input) {
-        // すでにデータがあれば取得し、なければデータを作成する
-        $tagModel = Tag::firstOrCreate(['tag' => $input]);
-
-        // 入力されたタグのIDを取得
-        $tag_id = $tagModel->id;
-
-        // クルーの日誌とタグの紐付け
-        $crewingdiary->tags()->attach($tag_id);
-        }
-        
-        // dd($request->all(), $input_post, $input_tags, $match[1]);
-        return view('posts.index');
-    }
-
-
+ 
 }
