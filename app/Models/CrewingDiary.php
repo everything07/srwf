@@ -26,4 +26,9 @@ class CrewingDiary extends Model
         'body',
         'sympathy',
         ];
+        
+    public function getPaginateByLimit($limit_count)
+    {
+        return $this->orderBy('updated_at', 'DESC')->paginate($limit_count);
+    }
 }
