@@ -34,8 +34,9 @@ class PostController extends Controller
     {
        $input_post = $request['post'];
        $input_reasons = $request->reasons_array;
+       $deferred_record->fill($input_post)->save();
        
-       
+    //   dd($deferred_record->id);
        $deferred_record->occurrencereason()->attach($input_reasons);
        
        return view('posts.index');

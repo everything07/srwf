@@ -1,10 +1,10 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SharingController;
-use App\Models\DeferredRecord;
-use App\Models\OccurrenceReason;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,16 +16,38 @@ use App\Models\OccurrenceReason;
 |
 */
 
-Route::get('/', [PostController::class, 'index']);
-Route::get('/deferred/edit/{deferred_record}', [PostController::class, 'edit']);
-Route::get('/deferred/detail/{deferred_record}', [PostController::class, 'detail']);
-Route::put('/deferred/{deferred_record}', [PostController::class, 'update']);
-Route::delete('/deferred/{deferred_record}', [PostController::class, 'delete']);
-Route::get('/deferred/table',[PostController::class, 'table']);
-Route::get('/deferred/Report', [PostController::class, 'Report']);
-Route::post('/posts', [PostController::class, 'store']);
+Route::get('/', [PostController::class, 'index'])->name('index')->middleware('auth');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Route::get('/crewing_diary/list', [SharingController::class, 'list_display']);
-Route::post('/crewing_diary/confirm', [SharingController::class, 'confirm']);
-Route::post('/crewing_diary/post', [SharingController::class, 'post']);
-Route::get('/crewing_diary', [SharingController::class, 'share']);
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+Route::controller(PostController::class)->middleware(['auth'])->group(function(){
+    Route::get('/', 'index')->name('index');
+    Route::get('/deferred/edit/{deferred_record}', 'edit')->name('edit');
+    Route::get('/deferred/detail/{deferred_record}', 'detail')->name('detail');
+    Route::put('/deferred/{deferred_record}', 'update')->name('update');
+    Route::delete('/deferred/{deferred_record}', 'delete')->name('delete');
+    Route::get('/deferred/table', 'table')->name('table');
+    Route::get('/deferred/Report', 'Report')->name('Report');
+    Route::post('/posts', 'store')->name('store');
+});
+
+Route::controller(SharingController::class)->middleware(['auth'])->group(function(){
+    Route::get('/crewing_diary/list', 'list_display')->name('list_display');
+    Route::post('/crewing_diary/confirm', 'confirm')->name('confirm');
+    Route::post('/crewing_diary/post', 'post')->name('post');
+    Route::get('/crewing_diary', 'sharing')->name('sharing');
+
+});
+require __DIR__.'/auth.php';
+

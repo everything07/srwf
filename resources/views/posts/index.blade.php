@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+<x-app-layout>
+    <x-slot name="header">SRWF </x-slot>
 <body>
     <header>
         <div>
@@ -13,9 +10,9 @@
         </div>
         <div>
             <div>
-                <p>社員番号:</p>
-                <p>名前:</p>
-                <p>役職：</p>
+                <p>社員番号:{{Auth::user()->employee_number }}</p>
+                <p>名前:{{Auth::user()->name }}</p>
+                <p>役職：{{Auth::user()->job_title }}</p>
             </div>
             <div>
                 <p>{{date('Y-m-d H:i:s') }}</p>
@@ -42,4 +39,5 @@
             </div>
     </div>
 </body>
+</x-app-layout>
 </html>
