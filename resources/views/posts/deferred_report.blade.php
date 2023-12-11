@@ -9,9 +9,9 @@
         </div>
         <div>
             <div>
-                <p>社員番号:</p>
-                <p>名前:</p>
-                <p>役職：</p>
+                <p>社員番号:{{Auth::user()->employee_number }}</p>
+                <p>名前:{{Auth::user()->name }}</p>
+                <p>役職：{{Auth::user()->job_title }}</p>
             </div>
             <div>
                 <p>{{date('Y-m-d H:i:s') }}</p>
@@ -30,6 +30,13 @@
             </div>
         </div>
     </saide>
+    <div>
+        <h2>報告内容</h2>
+            <div>
+                <a href="/deferred/table">遅延報告</a>
+                <a href="/crewing_diary/list">乗務日記</a>
+            </div>
+    </div>
     <main>
         <div>
             <h1>列車遅延報告書</h1>
@@ -42,7 +49,7 @@
                      <input type="text" name="post[cars_number]"><br>
                      <label>仕業</label>
                      <input type="text" name="post[job_number]"><br>
-                     <label>社員番号<input type="int" name="post[employee_number]" value=3003>：名前　</label><br>
+                     <label>社員番号<input type="hidden" name="post[employee_number]" value={{ $employee_number }}>{{ $employee_number }}：名前{{$user_name}}　</label><br>
                      <label>日付</label>
                      <input type="date" name="post[report_date]" value={{date('Y-m-d') }}><br>
                 </div>

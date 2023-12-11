@@ -2,16 +2,16 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <x-app-layout>
 <body>
-    <header>
+     <header>
         <div>
             <h1>業務支援サイト</h1>
             <p>SmertRailWorkFrea</p>
         </div>
         <div>
             <div>
-                <p>社員番号:</p>
-                <p>名前:</p>
-                <p>役職：</p>
+                <p>社員番号:{{Auth::user()->employee_number }}</p>
+                <p>名前:{{Auth::user()->name }}</p>
+                <p>役職：{{Auth::user()->job_title }}</p>
             </div>
             <div>
                 <p>{{date('Y-m-d H:i:s') }}</p>
@@ -30,6 +30,13 @@
             </div>
         </div>
     </saide>
+    <div>
+        <h2>報告内容</h2>
+            <div>
+                <a href="/deferred/table">遅延報告</a>
+                <a href="/crewing_diary/list">乗務日記</a>
+            </div>
+    </div>
     <main>
         <div>
             <h1>列車遅延報告書</h1>
@@ -44,8 +51,7 @@
                      <input type="text" name="post[cars_number]" value="{{ $deferred_record->cars_number }}"><br>
                      <label>仕業</label>
                      <input type="text" name="post[job_number]" value="{{ $deferred_record->job_number }}"><br>
-                     <p>名前</p>
-                     <input type="number" name="post[employee_number]" value="{{ $deferred_record->employee_number }}"><br>
+                     <lavel>社員番号  {{ $deferred_record->employee_number }} : 名前  {{$user_name}}</lavel><br>
                      <label>日付</label>
                      <input type="date" name="post[report_date]" value="{{$deferred_record->report_date}}"><br>
                 </div>

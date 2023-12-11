@@ -9,9 +9,9 @@
         </div>
         <div>
             <div>
-                <p>社員番号:</p>
-                <p>名前:</p>
-                <p>役職：</p>
+                <p>社員番号:{{Auth::user()->employee_number }}</p>
+                <p>名前:{{Auth::user()->name }}</p>
+                <p>役職：{{Auth::user()->job_title }}</p>
             </div>
             <div>
                 <p>{{date('Y-m-d H:i:s') }}</p>
@@ -30,6 +30,13 @@
             </div>
         </div>
     </saide>
+    <div>
+        <h2>報告内容</h2>
+            <div>
+                <a href="/deferred/table">遅延報告</a>
+                <a href="/crewing_diary/list">乗務日記</a>
+            </div>
+    </div>
     <main>
         <div>
             <h1>列車遅延報告</h1>
@@ -39,7 +46,7 @@
                 <div>
                     <div>
                         <lavel>社員番号__{{$deferred_record['employee_number']}}</lavel><br>
-                        <lavel>名前__マック太郎</lavel><br>
+                        <lavel>名前__{{$user_name}}</lavel><br>
                         <lavel>報告日__{{$deferred_record['report_date']}}</lavel><br>
                         <lavel>仕業__{{$deferred_record['job_number']}}</lavel><br>
                     </div>
@@ -88,7 +95,6 @@
         <a href="/">トップへ</a>
         <a href="/deferred/table">戻る</a>
         <a href="/deferred/edit/{{$deferred_record->id}}">修正・削除</a>
-        <!--<a href="/deferred/delete/{{$deferred_record->id}}">削除</a>-->
     </div>
 </body>
 </x-app-layout>

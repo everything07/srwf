@@ -9,9 +9,9 @@
         </div>
         <div>
             <div>
-                <p>社員番号:</p>
-                <p>名前:</p>
-                <p>役職：</p>
+                <p>社員番号:{{Auth::user()->employee_number }}</p>
+                <p>名前:{{Auth::user()->name }}</p>
+                <p>役職：{{Auth::user()->job_title }}</p>
             </div>
             <div>
                 <p>{{date('Y-m-d H:i:s') }}</p>
@@ -45,39 +45,33 @@
                 <div>
                     @foreach($crewingdiarys as $crewingdiary)
                     <div>
-                        <label>タイトル</label>
-                        <h2>{{$crewingdiary->title}}</h2>
+                        <h2>タイトル：{{$crewingdiary->title}}</h2>
                         <div>
-                            <label>役職</label>
-                            <p>{{$crewingdiary->job_title}}</p>
-                            <label>天気</label>
-                            <p>{{$crewingdiary->weather}}</p>
-                            <label>時間帯</label>
-                            <p>{{$crewingdiary->time_period}}</p>
+                            <p>役職：{{$crewingdiary->job_title}}</p>
+                            <p>天気：{{$crewingdiary->weather}}</p>
+                            <p>時間帯：{{$crewingdiary->time_period}}</p>
                         </div>
                         <div>
-                            <label>本文</label>
-                            <p>{{$crewingdiary->body}}</p>
+                            <p>本文：{{$crewingdiary->body}}</p>
                             
                         </div>
                         <div>
-                            <label>タグ</label>
-                            <p>
+                            <p>タグ：
+                            
                             @foreach($crewingdiary->tags as $tag)
                             {{$tag->tag}}
                             @endforeach
                             </p>
                         </div>
                         <div>
-                            <label>共感</label>
-                            <p>{{$crewingdiary->sympathy}}</p>
+                            <p>共感：{{$crewingdiary->sympathy}}</p>
                             <form>
-                                <input type="hidden" name="sympathy" value={{$crewingdiary->sympathy}} ><br> 
+                                <input type="hidden" name="sympathy" value={{$crewingdiary->sympathy}} >
                                 <input type="submit" value="👍" >
                             </form>
-                            <!--<p>{{$crewingdiary->id}}</p>-->
                         </div>
                     </div>
+                    <br>
                     @endforeach
                 </div>
             </div>
