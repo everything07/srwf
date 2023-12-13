@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('time_period');
             $table->string('title');
             $table->text('body');
-            $table->integer('sympathy');
             $table->timestamps();
         });
     }

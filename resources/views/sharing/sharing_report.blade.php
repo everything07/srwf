@@ -70,8 +70,6 @@
                 <textarea rows="10" cols="33" name="post[body]"></textarea><br>
                 <label>タグ</label>
                 <input type="text" name="tags"><br>
-                <!--いいね-->
-                <input type="hidden" name="post[sympathy]" value=0 ><br> 
             
                 <input type="submit" value="投稿内容確認"/>
             
