@@ -62,8 +62,6 @@
                  {{$inputs['tags']}}
                 <input type="hidden" name="tags" value="{{$inputs['tags']}}"><br>
                 <br>
-                <!--いいね-->
-               <input type="hidden" name="post[sympathy]" value="{{$inputs['post']['sympathy']}}"><br>
                 
                 <input type="submit" value="投稿">
                 

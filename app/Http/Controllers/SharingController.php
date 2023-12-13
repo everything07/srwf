@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\CrewingDiary;
 use App\Models\Tag;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+
 
 
 class SharingController extends Controller
@@ -58,11 +61,21 @@ class SharingController extends Controller
     
     public function list_display(Request $request, CrewingDiary $crewingdiary, Tag $tag)
     {
-        
-        // $like = $request->input('sympathy')
-        
         return view('sharing.sharing_list')->with(['crewingdiarys' => $crewingdiary->getPaginateByLimit(3), 'tags' => $tag->get()]);
     }
+    
+   public function toggleLike($crewingDiaryId)
+    {
+        $user = Auth::user();
+        $crewingDiary = CrewingDiary::findOrFail($crewingDiaryId);
+    
+        if ($crewingDiary->isLikedByUser($user->id)) {
+            $crewingDiary->users()->detach($user->id);
+        } else {
+            $crewingDiary->users()->attach($user->id);
+        }
 
+        return redirect()->route('list_display'); 
+    }
 
 }

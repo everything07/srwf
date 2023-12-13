@@ -64,11 +64,20 @@
                             </p>
                         </div>
                         <div>
-                            <p>共感：{{$crewingdiary->sympathy}}</p>
-                            <form>
-                                <input type="hidden" name="sympathy" value={{$crewingdiary->sympathy}} >
-                                <input type="submit" value="👍" >
-                            </form>
+                            <lavel>共感:{{$crewingdiary->likesCount($crewingdiary->id)}}</lavel>
+                            @if($crewingdiary->isLikedByUser(Auth::id()))
+                                <form action="{{ route('toggleLike', $crewingdiary->id) }}" method="post">
+                                    @csrf
+                                    <button type="submit">いいね解除</button>
+                                </form>
+                            @else
+                                <form action="{{ route('toggleLike', $crewingdiary->id) }}" method="post">
+                                    @csrf
+                                    <button type="submit">いいね</button>
+                                </form>
+
+                            @endif
+                            
                         </div>
                     </div>
                     <br>

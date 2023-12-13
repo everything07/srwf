@@ -15,6 +15,10 @@ class CrewingDiary extends Model
     public function tags() {
         return $this->belongsToMany(Tag::class);
     }
+    
+    public function users() {
+        return $this->belongsToMany(User::class);
+    }
    
 
     
@@ -24,11 +28,27 @@ class CrewingDiary extends Model
         'time_period',
         'title',
         'body',
-        'sympathy',
         ];
         
     public function getPaginateByLimit($limit_count)
     {
         return $this->orderBy('updated_at', 'DESC')->paginate($limit_count);
     }
+    
+    public function likesCount($diaryId)
+    {
+        $diary = self::find($diaryId);
+        if ($diary) {
+            return $diary->users()->count();
+        }
+
+        return 0;
+    }
+    
+
+    public function isLikedByUser($userId)
+    {
+        return $this->users()->where('user_id', $userId)->exists();
+    }
+    
 }
