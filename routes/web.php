@@ -47,7 +47,11 @@ Route::controller(SharingController::class)->middleware(['auth'])->group(functio
     Route::post('/crewing_diary/confirm', 'confirm')->name('confirm');
     Route::post('/crewing_diary/post', 'post')->name('post');
     Route::get('/crewing_diary', 'sharing')->name('sharing');
+    Route::get('/crewing_diary/detail/{crewingdiary}', 'detail')->name('detail');
+    Route::get('/crewing_diary/editRepost/{crewingdiary}', 'editRepost')->name('editRepost');
     Route::post('/crewing_diary/toggleLike/{crewingDiaryId}', 'toggleLike')->name('toggleLike');
+    Route::post('/crewing_diary/reconfirm/{crewingdiary}','reconfirm')->name('reconfirm');
+    Route::put('/crewing_diary/repost/{crewingdiary}','repost')->name('repost');
 
 });
 require __DIR__.'/auth.php';
