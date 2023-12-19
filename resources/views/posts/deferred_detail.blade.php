@@ -41,9 +41,6 @@
         <div>
             <h1>列車遅延報告</h1>
                 <div>
-                    <!--検索機能-->
-                </div>
-                <div>
                     <div>
                         <lavel>社員番号__{{$deferred_record['employee_number']}}</lavel><br>
                         <lavel>名前__{{$user_name}}</lavel><br>
@@ -92,9 +89,9 @@
         </div>
     </main>
     <div>
-        <a href="/">トップへ</a>
-        <a href="/deferred/table">戻る</a>
-        <a href="/deferred/edit/{{$deferred_record->id}}">修正・削除</a>
+        <a href="/">トップへ</a><br>
+        <a href="/deferred/table">戻る</a><br>
+        <a href="/deferred/edit/{{$deferred_record->id}}">修正・削除</a><br>
     </div>
 </body>
 </x-app-layout>

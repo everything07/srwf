@@ -41,6 +41,7 @@ class SharingController extends Controller
         preg_match_all('/#([a-zA-Z0-9０-９ぁ-んァ-ヶー一-龠]+)/u', $input_tags, $match);
 
         // クルーの日誌を保存
+        $crewingdiary->user_id = Auth::id();
         $crewingdiary->fill($input_post)->save();
 
         // ハッシュタグの処理
@@ -76,6 +77,64 @@ class SharingController extends Controller
         }
 
         return redirect()->route('list_display'); 
+    }
+    
+    public function detail(CrewingDiary $crewingdiary, Tag $tag)
+    {
+        return view('sharing.sharing_detail')->with(['crewingdiary' => $crewingdiary, 'tags' => $tag->get()]);
+    }
+    
+    public function editRepost(CrewingDiary $crewingdiary, Tag $tag)
+    {
+        $tagsAsString =  '#' .implode(' #', $crewingdiary->tags->pluck('tag')->toArray());
+    
+        return view('sharing.sharing_edit_repost', compact('tagsAsString'))->with(['crewingdiary' => $crewingdiary, 'tags' => $tag->get()]);
+    }
+    
+    public function reconfirm(Request $request, CrewingDiary $crewingdiary)
+    {
+        $inputs = $request->all();
+        
+        // セッションにデータを保存
+        session(['reconfirm_data' => $inputs]);
+
+        return view('sharing.sharing_reconfirm')->with(['crewingdiary' => $crewingdiary]);
+    
+    }
+    
+    public function repost(Request $request, CrewingDiary $crewingdiary, Tag $tag)
+    {
+        $input_post = $request['post'];
+        $input_tags = $request->tags;
+
+        $diaryId = $input_post['id'];
+        $userId = CrewingDiary::getUserIdForDiary($diaryId);
+
+        $tagIds = [];
+
+        preg_match_all('/#([a-zA-Z0-9０-９ぁ-んァ-ヶー一-龠]+)/u', $input_tags, $match);
+
+        foreach ($match[1] as $input) {
+            $tagModel = Tag::firstOrCreate(['tag' => $input]);
+            $tagIds[] = $tagModel->id;
+            
+        }
+        
+        if ($userId=== Auth::id()) {
+            // 更新・「更新」タグ自動追加
+            $crewingdiary->fill($input_post)->save();
+            $tagIds[] = 2; // タグIDが2のタグ
+            $crewingdiary->tags()->sync($tagIds);
+        } else {
+            // 新規投稿・「再投稿」自動タグ追加
+            $crewingdiary = new CrewingDiary;
+            $crewingdiary->user_id = Auth::id();
+            $crewingdiary->fill($input_post)->save();
+            $tagIds[] = 1; // タグIDが1のタグを追加
+            $crewingdiary->tags()->sync($tagIds);
+        }
+    
+        return view('posts.index');
     }
 
 }

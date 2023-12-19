@@ -23,6 +23,7 @@ class CrewingDiary extends Model
 
     
     protected $fillable = [
+        'user_id',
         'job_title',
         'weather',
         'time_period',
@@ -49,6 +50,17 @@ class CrewingDiary extends Model
     public function isLikedByUser($userId)
     {
         return $this->users()->where('user_id', $userId)->exists();
+    }
+    
+    public static function getUserIdForDiary($diaryId)
+    {
+        $crewingDiary = static::find($diaryId);
+
+        if ($crewingDiary) {
+            return $crewingDiary->user_id;
+        } else {
+            return null; 
+        }
     }
     
 }

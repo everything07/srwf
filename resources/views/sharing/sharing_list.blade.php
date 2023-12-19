@@ -32,7 +32,7 @@
     </saide>
     <main>
         <div>
-            <h1>列車遅延報告 一覧</h1>
+            <h1>乗務日記 一覧</h1>
             <div>
                 <!--検索機能-->
                 <form>
@@ -45,15 +45,14 @@
                 <div>
                     @foreach($crewingdiarys as $crewingdiary)
                     <div>
-                        <h2>タイトル：{{$crewingdiary->title}}</h2>
+                        <h2><a href="/crewing_diary/detail/{{$crewingdiary->id}}" >タイトル：{{$crewingdiary->title}}</a></h2>
                         <div>
                             <p>役職：{{$crewingdiary->job_title}}</p>
                             <p>天気：{{$crewingdiary->weather}}</p>
                             <p>時間帯：{{$crewingdiary->time_period}}</p>
                         </div>
                         <div>
-                            <p>本文：{{$crewingdiary->body}}</p>
-                            
+                           <p>本文：{!! nl2br( mb_strimwidth($crewingdiary->body, 0, 100, "...") )!!}</p>
                         </div>
                         <div>
                             <p>タグ：
@@ -66,12 +65,12 @@
                         <div>
                             <lavel>共感:{{$crewingdiary->likesCount($crewingdiary->id)}}</lavel>
                             @if($crewingdiary->isLikedByUser(Auth::id()))
-                                <form action="{{ route('toggleLike', $crewingdiary->id) }}" method="post">
+                                <form action="/crewing_diary/toggleLike/{{ $crewingdiary->id }}" method="post">
                                     @csrf
                                     <button type="submit">いいね解除</button>
                                 </form>
                             @else
-                                <form action="{{ route('toggleLike', $crewingdiary->id) }}" method="post">
+                                <form action="/crewing_diary/toggleLike/{{ $crewingdiary->id }}" method="post">
                                     @csrf
                                     <button type="submit">いいね</button>
                                 </form>

@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('crewing_diaries', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained();
             $table->string('job_title');
             $table->string('weather');
             $table->string('time_period');
