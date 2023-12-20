@@ -46,6 +46,7 @@ class CrewingDiary extends Model
         return 0;
     }
     
+    
 
     public function isLikedByUser($userId)
     {
