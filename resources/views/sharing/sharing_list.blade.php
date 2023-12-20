@@ -42,6 +42,17 @@
             </div>
             <div>
                 <h1>乗務日記</h1>
+                <br>
+                <br>
+                <div>
+                    @if (session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+                </div>
+                <br>
+                <br>
                 <div>
                     @foreach($crewingdiarys as $crewingdiary)
                     <div>
@@ -75,6 +86,22 @@
                                     <button type="submit">いいね</button>
                                 </form>
 
+                            @endif
+                            
+                        </div>
+                        <div>
+                            @if( $crewingdiary->user_id == Auth::user()->id )
+                                <form action="/crewing_diary/delete/{{ $crewingdiary->id }}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit">削除</button>
+                                </form>
+                            @else
+                                <form action="/crewing_diary/deletingOrder/{{ $crewingdiary->id }}" method="post">
+                                    @csrf
+                                    @method('PUT')
+                                    <button type="submit">削除依頼</button>
+                                </form>
                             @endif
                             
                         </div>

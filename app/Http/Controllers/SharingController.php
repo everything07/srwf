@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\CrewingDiary;
 use App\Models\Tag;
 use App\Models\User;
+use App\Models\DeletingOrder;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -120,7 +121,7 @@ class SharingController extends Controller
             
         }
         
-        if ($userId=== Auth::id()) {
+        if (1=== Auth::id()) {
             // 更新・「更新」タグ自動追加
             $crewingdiary->fill($input_post)->save();
             $tagIds[] = 2; // タグIDが2のタグ
@@ -128,7 +129,7 @@ class SharingController extends Controller
         } else {
             // 新規投稿・「再投稿」自動タグ追加
             $crewingdiary = new CrewingDiary;
-            $crewingdiary->user_id = Auth::id();
+            $crewingdiary->user_id = 1;
             $crewingdiary->fill($input_post)->save();
             $tagIds[] = 1; // タグIDが1のタグを追加
             $crewingdiary->tags()->sync($tagIds);
@@ -136,5 +137,37 @@ class SharingController extends Controller
     
         return view('posts.index');
     }
+    
+    public function delete(CrewingDiary $crewingdiary)
+    {
+        $crewingdiary->delete();
+        return view('posts.index');
+    }
+    
+    public function deletingOrder(CrewingDiary $crewingdiary, DeletingOrder $deletingorder)
+    {
+        $like = $crewingdiary->likesCount($crewingdiary->id);
+        $delet = $deletingorder->getDeleteCount($crewingdiary->id);
+    
+        if($deletingorder->check($crewingdiary->id, Auth::id()) ){
+            return redirect()->back()->with('success', '削除依頼はすでにされています。');
+        }
+        
+        $delet++;
+    
+        if ($like < $delet) {
+            $crewingdiary->delete();
+            return redirect('/')->with('success', '日記が削除されました');
+        } else {
+            // 削除依頼の履歴を作成
+            $deletingorder->create([
+                'crewing_diary_id' => $crewingdiary->id,
+                'user_id' => Auth::id(),
+            ]);
+    
+            return redirect()->back()->with('success', '削除依頼が送信されました');
+        }
+    }
+
 
 }
