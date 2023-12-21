@@ -121,7 +121,7 @@ class SharingController extends Controller
             
         }
         
-        if (1=== Auth::id()) {
+        if ($userId === Auth::id()) {
             // 更新・「更新」タグ自動追加
             $crewingdiary->fill($input_post)->save();
             $tagIds[] = 2; // タグIDが2のタグ
@@ -129,7 +129,7 @@ class SharingController extends Controller
         } else {
             // 新規投稿・「再投稿」自動タグ追加
             $crewingdiary = new CrewingDiary;
-            $crewingdiary->user_id = 1;
+            $crewingdiary->user_id = Auth::id();
             $crewingdiary->fill($input_post)->save();
             $tagIds[] = 1; // タグIDが1のタグを追加
             $crewingdiary->tags()->sync($tagIds);
