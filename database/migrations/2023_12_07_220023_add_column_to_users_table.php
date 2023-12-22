@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            // $table->string('employee_number');
-            // $table->string('job_title');
+            $table->string('employee_number');
+            $table->string('job_title');
             // 社員番号、役職追加
         });
     }
@@ -24,7 +24,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            //
+            
         });
     }
 };
