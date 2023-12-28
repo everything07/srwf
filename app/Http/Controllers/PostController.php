@@ -63,7 +63,7 @@ class PostController extends Controller
         $from = $request->input('from');
         $until = $request->input('until');
 
-        $query = $deferred_record->orderBy('report_date', 'desc')->orderBy('created_at', 'asc');
+        $query = $deferred_record->orderBy('report_date', 'desc')->orderBy('created_at', 'desc');
 
         if (isset($from) && isset($until)) 
         {
