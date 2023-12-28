@@ -77,7 +77,7 @@ class SharingController extends Controller
             $crewingDiary->users()->attach($user->id);
         }
 
-        return redirect()->route('list_display'); 
+        return redirect()->back(); 
     }
     
     public function detail(CrewingDiary $crewingdiary, Tag $tag)
