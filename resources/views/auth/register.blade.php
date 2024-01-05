@@ -9,18 +9,18 @@
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
         
-         <div>
-            <x-input-label for="employee_number" :value="__('Employee Number')" />
-            <x-text-input id="employee_number" name="employee_number" type="text" class="mt-1 block w-full" :value="old('employee_number', $user->employee_number)" />
-            <x-input-error class="mt-2" :messages="$errors->get('employee_number')" />
-        </div>
+        <!-- <div>-->
+        <!--    <x-input-label for="employee_number" :value="__('Employee Number')" />-->
+        <!--    <x-text-input id="employee_number" name="employee_number" type="text" class="mt-1 block w-full" :value="old('employee_number')" required autofocus autocomplete="employee_number" />-->
+        <!--    <x-input-error class="mt-2" :messages="$errors->get('employee_number')" />-->
+        <!--</div>-->
 
         <!-- 役職 -->
-        <div>
-            <x-input-label for="job_title" :value="__('Job Title')" />
-            <x-text-input id="job_title" name="job_title" type="text" class="mt-1 block w-full" :value="old('job_title', $user->job_title)" />
-            <x-input-error class="mt-2" :messages="$errors->get('job_title')" />
-        </div>
+        <!--<div>-->
+        <!--    <x-input-label for="job_title" :value="__('Job Title')" />-->
+        <!--    <x-text-input id="job_title" name="job_title" type="text" class="mt-1 block w-full" :value="old('job_title')"required autofocus autocomplete="job_title" />-->
+        <!--    <x-input-error class="mt-2" :messages="$errors->get('job_title')" />-->
+        <!--</div>-->
 
         <!-- Email Address -->
         <div class="mt-4">
