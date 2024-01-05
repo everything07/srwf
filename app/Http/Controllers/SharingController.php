@@ -63,9 +63,21 @@ class SharingController extends Controller
     
     public function list_display(Request $request, CrewingDiary $crewingdiary, Tag $tag)
     {
-        return view('sharing.sharing_list')->with(['crewingdiarys' => $crewingdiary->getPaginateByLimit(3), 'tags' => $tag->get()]);
-    }
+        $word = $request->input('word');
+        $condition = $request->input('condition');
     
+        if ($word === null && $condition === null) 
+        {
+           $crewingdiarys = $crewingdiary->getPaginateByLimit(3);
+        } else {
+            $searchResult = $crewingdiary->search_get($word, $condition, 0);
+            $crewingdiarys = $searchResult;
+        }
+
+        return view('sharing.sharing_list')->with(['crewingdiarys' => $crewingdiarys, 'tags' => $tag->get()]);
+    }
+
+       
    public function toggleLike($crewingDiaryId)
     {
         $user = Auth::user();
