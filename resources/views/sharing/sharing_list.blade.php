@@ -49,13 +49,16 @@
             <div>
                 <!--検索機能-->
                 <form>
-                    <label>検索</label>
+                    <lavel>検索ワード</lavel>
+                    <input tyoe="texit" name="word">
+                    <lavel>完全一致のみ表示</lavel>
+                    <input type="checkbox" name="condition" value=1 ><br>
                     <input type="submit" value="検索" >
                 </form>
             </div>
             <div>
-                <h1>乗務日記</h1>
                 <br>
+                <h1>乗務日記</h1>
                 <br>
                 <div>
                     @if (session('success'))
