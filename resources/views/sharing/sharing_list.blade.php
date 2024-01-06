@@ -27,10 +27,10 @@
             <h2 style="font-size: 18px;">報告書</h2>
             <div class="container text-center">
                 <div class="row justify-content-end">
-                    <a href="/deferred/Report" class="col-2 nav-link">列車遅延報告書</a>
-                    <a href="#" class="col-2 nav-link">乗務報告書</a>
-                    <a href="#" class="col-2 nav-link">発光信号動作報告書</a>
-                    <a href="#" class="col-2 nav-link">非常ブレーキ動作報告書</a>
+                   <a href="/deferred/Report" class="col-2 nav-link">列車遅延報告書</a>
+                    <a href="/not" class="col-2 nav-link">乗務報告書</a>
+                    <a href="/not" class="col-2 nav-link">発光信号動作報告書</a>
+                    <a href="/not" class="col-2 nav-link">非常ブレーキ動作報告書</a>
                     <a href="/crewing_diary" class="col-2 nav-link">乗務日記</a>
                 </div>
             </div>
@@ -53,14 +53,6 @@
                     <input tyoe="texit" name="word">
                     <lavel>完全一致のみ表示</lavel>
                     <input type="checkbox" name="condition" value=1 ><br>
-                    <lavel>検索範囲を絞る</lavel><br>
-                    @foreach($columnNames as $key => $columnName)
-                    <lavel>{{$columnName}}</lavel>
-                    <input type="checkbox" name=columns[{{$key}}] value={{$key}} >&nbsp;&nbsp;&nbsp;
-                    @endforeach
-                    <lavel>タグ</lavel>
-                    <input type="checkbox" name="selectedTag" value=1>
-                    <br>
                     <input type="submit" value="検索" >
                 </form>
             </div>

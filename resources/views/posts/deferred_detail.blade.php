@@ -28,9 +28,9 @@
             <div class="container text-center">
                 <div class="row justify-content-end">
                     <a href="/deferred/Report" class="col-2 nav-link">列車遅延報告書</a>
-                    <a href="#" class="col-2 nav-link">乗務報告書</a>
-                    <a href="#" class="col-2 nav-link">発光信号動作報告書</a>
-                    <a href="#" class="col-2 nav-link">非常ブレーキ動作報告書</a>
+                    <a href="/not" class="col-2 nav-link">乗務報告書</a>
+                    <a href="/not" class="col-2 nav-link">発光信号動作報告書</a>
+                    <a href="/not" class="col-2 nav-link">非常ブレーキ動作報告書</a>
                     <a href="/crewing_diary" class="col-2 nav-link">乗務日記</a>
                 </div>
             </div>

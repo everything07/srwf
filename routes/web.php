@@ -21,6 +21,8 @@ Route::get('/', [PostController::class, 'index'])->name('index')->middleware('au
 //     return view('welcome');
 // });
 
+Route::get('/not', [PostController::class, 'notfound'])->name('notfound')->middleware('auth');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
