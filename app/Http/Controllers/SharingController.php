@@ -63,18 +63,28 @@ class SharingController extends Controller
     
     public function list_display(Request $request, CrewingDiary $crewingdiary, Tag $tag)
     {
+        $columnNames = [
+            'job_title' => "役職",
+            'weather' => "天気",
+            'time_period' => "時間帯",
+            'title' => "タイトル",
+            'body' => "本文"
+            ];
+        
         $word = $request->input('word');
         $condition = $request->input('condition');
+        $columns = $request->input('columns');
+        $selectedTag = $request->input('selectedTag');
     
         if ($word === null && $condition === null) 
         {
            $crewingdiarys = $crewingdiary->getPaginateByLimit(3);
         } else {
-            $searchResult = $crewingdiary->search_get($word, $condition, 0);
+            $searchResult = $crewingdiary->search_get($word, $condition, $columns, $selectedTag);
             $crewingdiarys = $searchResult;
         }
 
-        return view('sharing.sharing_list')->with(['crewingdiarys' => $crewingdiarys, 'tags' => $tag->get()]);
+        return view('sharing.sharing_list', compact("columnNames"))->with(['crewingdiarys' => $crewingdiarys, 'tags' => $tag->get()]);
     }
 
        
