@@ -28,6 +28,11 @@ class PostController extends Controller
         
         return view('posts.index');
     }
+    
+    public function notfound()
+    {
+        return view('posts.not_found');
+    }
          
     public function Report(OccurrenceReason $occurrencereason)
     { 
