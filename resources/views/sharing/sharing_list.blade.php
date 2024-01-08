@@ -53,6 +53,14 @@
                     <input tyoe="texit" name="word">
                     <lavel>完全一致のみ表示</lavel>
                     <input type="checkbox" name="condition" value=1 ><br>
+                     <lavel>検索範囲を絞る</lavel><br>
+                    @foreach($columnNames as $key => $columnName)
+                    <lavel>{{$columnName}}</lavel>
+                    <input type="checkbox" name=columns[{{$key}}] value={{$key}} >&nbsp;&nbsp;&nbsp;
+                    @endforeach
+                    <lavel>タグ</lavel>
+                    <input type="checkbox" name="selectedTag" value=1>
+                    <br>
                     <input type="submit" value="検索" >
                 </form>
             </div>
