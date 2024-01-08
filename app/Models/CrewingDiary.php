@@ -64,13 +64,17 @@ class CrewingDiary extends Model
         }
     }
     
-    public function search_get($key, $match, $column)
+    public function search_get($key, $match, $columns, $selectedTag)
     {
         $tag = Tag::where('tag', $key)->first();
         $tagId = $tag ? $tag->id : null;
+        $column = is_array($columns) ? count($columns) : 0;
+        if ($selectedTag == 1) {
+        $column += 1;
+        }
         
-        // dd($key, $match, $column);
-        // もしも$columnが0なら
+        // dd($key, $match, $columns, $column, $selectedTag);
+        // もしも$columnsが0なら
         if ($column == 0) {
             // 全てのテーブルから検索
             return $this->where(function ($query) use ($key, $match, $tagId) {
@@ -101,22 +105,32 @@ class CrewingDiary extends Model
             })->orderBy('updated_at', 'DESC')->paginate(3);
         } else {
             // 選択されているカラム内を検索
-            return $this->where(function ($query) use ($key, $match, $column) {
-                $columnName = $this->getColumnName($column);
+            return $this->where(function ($query) use ($key, $match, $columns, $selectedTag, $tagId)
+            {
+                if ($columns != null)
+                {
+                    foreach ($columns as $columnName)
+                    {
+                        if ($match == 1)
+                        {
+                            // 完全一致で検索
+                            $query->orWhere($columnName, '=', $key);
+                        } else {
+                            // 部分一致で検索
+                            // dd($key, $match, $columns, $columnName);
+                            $query->orWhere($columnName, 'like', "%$key%");
+                        }
+                    }
+                }
 
-                if ($match == 1) {
-                    // 完全一致で検索
-                    $query->where($columnName, '=', $key);
-                } else {
-                    // 部分一致で検索
-                    $query->where($columnName, 'like', "%$key%");
+                if ($selectedTag == 1) 
+                {
+                    $query->orWhereHas('tags', function ($tagQuery) use ($tagId)
+                    {
+                        $tagQuery->where('tag_id', $tagId);
+                    });
                 }
             })->orderBy('updated_at', 'DESC')->paginate(3);
         }
-    
-        // もしも$columが０なら
-        // 全てのテーブルから検索→（$match＝0の場合は完全一致、　＝１の場合は部分一致で検索）
-        // elses 選択されているカラムないを検索（$match＝0の場合は完全一致、　＝１の場合は部分一致で検索）
-        
     }
 }

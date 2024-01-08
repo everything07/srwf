@@ -61,7 +61,7 @@ class SharingController extends Controller
         return view('posts.index');
     }
     
-    public function list_display(Request $request, CrewingDiary $crewingdiary, Tag $tag)
+   public function list_display(Request $request, CrewingDiary $crewingdiary, Tag $tag)
     {
         $columnNames = [
             'job_title' => "役職",
@@ -70,12 +70,12 @@ class SharingController extends Controller
             'title' => "タイトル",
             'body' => "本文"
             ];
-        
+
         $word = $request->input('word');
         $condition = $request->input('condition');
         $columns = $request->input('columns');
         $selectedTag = $request->input('selectedTag');
-    
+
         if ($word === null && $condition === null) 
         {
            $crewingdiarys = $crewingdiary->getPaginateByLimit(3);
@@ -83,9 +83,10 @@ class SharingController extends Controller
             $searchResult = $crewingdiary->search_get($word, $condition, $columns, $selectedTag);
             $crewingdiarys = $searchResult;
         }
-
+        
         return view('sharing.sharing_list', compact("columnNames"))->with(['crewingdiarys' => $crewingdiarys, 'tags' => $tag->get()]);
     }
+
 
        
    public function toggleLike($crewingDiaryId)
