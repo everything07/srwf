@@ -49,20 +49,22 @@
         </div>
     </div>
     <main>
-        <div>
-            <h1>列車遅延報告書</h1>
+        <div class="card align-items-center border-info mb-3 mx-auto p-4" style="max-width: 40%;">
+            <h1 class="card-header fs-4 my-4">列車遅延報告書</h1>
             <form action="/posts" method="POST">
                 @csrf
-                 <div>
-                     <label>列車番号</label>
-                     <input type="text" name="post[train_number]"><br>
-                     <label>車両番号</label>
-                     <input type="text" name="post[cars_number]"><br>
-                     <label>仕業</label>
-                     <input type="text" name="post[job_number]"><br>
-                     <label>社員番号<input type="hidden" name="post[employee_number]" value={{ $employee_number }}>{{ $employee_number }}：名前{{$user_name}}　</label><br>
-                     <label>日付</label>
-                     <input type="date" name="post[report_date]" value={{date('Y-m-d') }}><br>
+                <div>
+                    <div class="row justify-content-end">
+                        <label class="form-label col-4 mx-2">社員番号<input type="hidden" name="post[employee_number]" value={{ $employee_number }}>{{ $employee_number }}：名前{{$user_name}}　</label>
+                    </div>
+                    <label class="form-label">列車番号</label>
+                    <input type="text" class="form-control" name="post[train_number]"><br>
+                    <label class="form-label">車両番号</label>
+                    <input type="text" class="form-control" name="post[cars_number]"><br>
+                    <label class="form-label">仕業</label>
+                    <input type="text" class="form-control" name="post[job_number]"><br>
+                    <label class="form-label">日付</label>
+                    <input type="date" class="form-control" name="post[report_date]" value={{date('Y-m-d') }}><br>
                 </div>
                 <div>
                     <p>遅延時間の報告の仕方</p>
@@ -70,35 +72,41 @@
                     <p>秒数は選択式です</p>
                     
                     @foreach($stations as $key => $station)
-                        <label> {{ $station }} 着・発</label>
-                         <input type="int" name="post[{{ $key }}_departure_minute]">
-                        <select name="post[{{$key}}_departure_second]">
+                    <div class="row">
+                        <label class="form-label col mx-2"> {{ $station }} 着・発</label>
+                         <input type="int" class="form-control col mx-2" name="post[{{ $key }}_departure_minute]">
+                        <select class="form-select col mx-2" name="post[{{$key}}_departure_second]">
                             <option value=" ">-</option>
                             <option value="00">00</option>
                             <option value="30">30</option>
                         </select>
-                        <input type="int" name="post[{{ $key }}_arrival_minute]">
-                        <select name="post[{{$key}}_arrival_second]">
+                        <input type="int" class="form-control col mx-2" name="post[{{ $key }}_arrival_minute]">
+                        <select class="form-select col mx-2" name="post[{{$key}}_arrival_second]">
                             <option value=" ">-</option>
                             <option value="00">00</option>
                             <option value="30">30</option>
                         </select><br>
+                    </div>
                     @endforeach
-                    <label>事由</label>
-                    @foreach($occurrence_reasons as $occurrence_reason)
-                        <lavel>
-                            <input type="checkbox" name="reasons_array[]" value="{{ $occurrence_reason->id}}">
-                                {{$occurrence_reason->occurrence_reason}}
-                            </input><br>
-                        </lavel>
-                    @endforeach
-                    <label for="remarks">備考</label>
-                    <textarea name="post[remarks]" rows="4"></textarea><br>
+                    <label class="form-label">事由</label><br>
+                    <div class="row">
+                        @foreach($occurrence_reasons as $occurrence_reason)
+                            <lavel class="form-label col ms-2">
+                                <input type="checkbox" class="form-check col me-2" name="reasons_array[]" value="{{ $occurrence_reason->id}}">
+                                    {{$occurrence_reason->occurrence_reason}}
+                                </input><br>
+                            </lavel>
+                        @endforeach
+                    </div>
+                    <label for="remarks" class="form-label">備考</label><br>
+                    <textarea class="form-control" name="post[remarks]" rows="4"></textarea><br>
                 </div>
-                <input type="submit" value="報告"/>
+                <div class="row justify-content-end">
+                    <input type="submit" class="btn btn-outline-primary btn-lg col-2 me-5" value="報告"/>
+                </div>
             </form>
-           <a href="/">トップへ</a>
         </div>
+        
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
