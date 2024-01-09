@@ -3,12 +3,12 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <x-app-layout>
     <x-slot name="header">
-<body>
+<body class="">
     <header>
-        <div>
-            <a href="/">
-                <h1 class="col-2">業務支援サイト</h1>
-                <p class="col-2">SmertRailWorkFrea</p>
+        <div class="d-flex flex-column">
+            <a href="/" class="text-center">
+                <h1 class="col-12 col-md-2 font-monospace">業務支援サイト</h1>
+                <p class="col-12 col-md-2">SmertRailWorkFrea</p>
             </a>
         </div>
         <div>
@@ -24,8 +24,8 @@
     </header>
     </x-slot>
     <saide>
-        <div>
-            <h2 style="font-size: 18px;">報告書</h2>
+        <div class="container mt-2">
+            <h2 class="fs-3 mt-4">報告書</h2>
             <div class="container text-center">
                 <div class="row justify-content-end">
                     <a href="/deferred/Report" class="col-2 nav-link">列車遅延報告書</a>
@@ -37,12 +37,16 @@
             </div>
         </div>
     </saide>
-    <div>
-        <h2>報告内容</h2>
-            <div class="list-group">
-                <a href="/deferred/table" class="col-2 btn btn-outline-primary">遅延報告</a>
-                <a href="/crewing_diary/list" class="col-2 btn btn-outline-primary">乗務日記</a>
+    <div class="container mt-2">
+        <h2 class="fs-4 mt-4">報告内容</h2>
+        <div class="row ">
+            <div class="col-2">
+                <div class="list-group">
+                    <a href="/deferred/table" class="btn btn-outline-primary mt-2">遅延報告</a>
+                    <a href="/crewing_diary/list" class="btn btn-outline-primary mt-2">乗務日記</a>
+                </div>
             </div>
+        </div>
     </div>
     
     <main>
