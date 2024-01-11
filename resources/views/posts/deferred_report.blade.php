@@ -55,7 +55,7 @@
                 @csrf
                 <div>
                     <div class="row justify-content-end">
-                        <label class="form-label col-4 mx-2">社員番号<input type="hidden" name="post[employee_number]" value={{ $employee_number }}>{{ $employee_number }}：名前{{$user_name}}　</label>
+                        <label class="form-label col-md-auto mx-2">社員番号<input type="hidden" name="post[employee_number]" value={{ $employee_number }}>{{ $employee_number }}：名前{{$user_name}}　</label>
                     </div>
                     <label class="form-label">列車番号</label>
                     <input type="text" class="form-control" name="post[train_number]"><br>
@@ -67,13 +67,14 @@
                     <input type="date" class="form-control" name="post[report_date]" value={{date('Y-m-d') }}><br>
                 </div>
                 <div>
-                    <p>遅延時間の報告の仕方</p>
-                    <p>(MM)分で入力すること→例）　１２０</p>
-                    <p>秒数は選択式です</p>
-                    
+                    <div class="my-4">
+                        <p>遅延時間の報告の仕方</p>
+                        <p>(MM)分で入力すること→例）　１２０</p>
+                        <p>秒数は選択式です</p>
+                    </div>
                     @foreach($stations as $key => $station)
-                    <div class="row">
-                        <label class="form-label col mx-2"> {{ $station }} 着・発</label>
+                    <div class="row mt-1">
+                        <label class="form-label d-flex align-items-center col mx-2">{{ $station }} 着・発</label>
                          <input type="int" class="form-control col mx-2" name="post[{{ $key }}_departure_minute]">
                         <select class="form-select col mx-2" name="post[{{$key}}_departure_second]">
                             <option value=" ">-</option>
@@ -85,24 +86,24 @@
                             <option value=" ">-</option>
                             <option value="00">00</option>
                             <option value="30">30</option>
-                        </select><br>
+                        </select>
                     </div>
                     @endforeach
-                    <label class="form-label">事由</label><br>
+                    <label class="form-label mt-4">事由</label><br>
                     <div class="row">
                         @foreach($occurrence_reasons as $occurrence_reason)
-                            <lavel class="form-label col ms-2">
-                                <input type="checkbox" class="form-check col me-2" name="reasons_array[]" value="{{ $occurrence_reason->id}}">
+                            <lavel class="form-label col-md-auto ms-2">
+                                <input type="checkbox" class="form-check col-md-auto me-2" name="reasons_array[]" value="{{ $occurrence_reason->id}}">
                                     {{$occurrence_reason->occurrence_reason}}
                                 </input><br>
                             </lavel>
                         @endforeach
                     </div>
-                    <label for="remarks" class="form-label">備考</label><br>
+                    <label for="remarks" class="form-label mt-4">備考</label><br>
                     <textarea class="form-control" name="post[remarks]" rows="4"></textarea><br>
                 </div>
                 <div class="row justify-content-end">
-                    <input type="submit" class="btn btn-outline-primary btn-lg col-2 me-5" value="報告"/>
+                    <input type="submit" class="btn btn-outline-primary btn-lg col-md-auto me-5" value="報告"/>
                 </div>
             </form>
         </div>
