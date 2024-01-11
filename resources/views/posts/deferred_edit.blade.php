@@ -49,73 +49,82 @@
         </div>
     </div>
     <main>
-        <div>
-            <h1>列車遅延報告書</h1>
+        <div class="card align-items-center border-info mb-3 mx-auto p-4" style="max-width: 40%;">
+            <h1 class="card-header fs-4 my-4">列車遅延報告書</h1>
             <form action="/deferred/{{$deferred_record->id}}" method="POST">
                 @method('PUT')
                 @csrf
                
-                 <div>
-                     <label>列車番号</label>
-                     <input type="text" name="post[train_number]" value="{{ $deferred_record->train_number }}"><br>
-                     <label>車両番号</label>
-                     <input type="text" name="post[cars_number]" value="{{ $deferred_record->cars_number }}"><br>
-                     <label>仕業</label>
-                     <input type="text" name="post[job_number]" value="{{ $deferred_record->job_number }}"><br>
-                     <lavel>社員番号  {{ $deferred_record->employee_number }} : 名前  {{$user_name}}</lavel><br>
-                     <label>日付</label>
-                     <input type="date" name="post[report_date]" value="{{$deferred_record->report_date}}"><br>
+                <div>
+                    <div class="row justify-content-end">
+                        <lavel class="form-label col-md-auto mx-2">社員番号  {{ $deferred_record->employee_number }} : 名前  {{$user_name}}</lavel><br>
+                    </div>
+                    <label class="form-label">列車番号</label>
+                    <input type="text" class="form-control" name="post[train_number]" value="{{ $deferred_record->train_number }}"><br>
+                    <label class="form-label">車両番号</label>
+                    <input type="text" class="form-control" name="post[cars_number]" value="{{ $deferred_record->cars_number }}"><br>
+                    <label class="form-label">仕業</label>
+                    <input type="text" class="form-control" name="post[job_number]" value="{{ $deferred_record->job_number }}"><br>
+                    <label class="form-label">日付</label>
+                    <input type="date" class="form-control" name="post[report_date]" value="{{$deferred_record->report_date}}"><br>
                 </div>
                 <div>
-                    <p>遅延時間の報告の仕方</p>
-                    <p>(MM)分で入力すること→例）　１２０</p>
-                    <p>秒数は選択式です</p>
-                    
+                    <div class="my-4">
+                        <p>遅延時間の報告の仕方</p>
+                        <p>(MM)分で入力すること→例）　１２０</p>
+                        <p>秒数は選択式です</p>
+                    </div>
                     @foreach($stations as $key => $station)
-                        <label> {{ $station }} 着・発</label>
-                         <input type="number" name="post[{{ $key }}_departure_minute]" value="{{ $deferred_record->{$key.'_departure_minute'} }}">
-                        <select name="post[{{$key}}_departure_second]" value="{{ $deferred_record->{$key.'_departure_second'} }}">
+                    <div class="row mt-1">
+                        <label class="form-label d-flex align-items-center col mx-2">{{ $station }} 着・発</label>
+                        <input type="int" class="form-control col mx-2" name="post[{{ $key }}_departure_minute]" value="{{ $deferred_record->{$key.'_departure_minute'} }}">
+                        <select class="form-select col mx-2" name="post[{{$key}}_departure_second]" value="{{ $deferred_record->{$key.'_departure_second'} }}">
                             <option value="{{ $deferred_record->{$key.'_departure_second'} }}">{{ $deferred_record->{$key.'_departure_second'} }}</option>
                             <option value=" ">-</option>
                             <option value="00">00</option>
                             <option value="30">30</option>
                         </select>
-                        <input type="number" name="post[{{ $key }}_arrival_minute]" value="{{ $deferred_record->{$key.'_arrival_minute'} }}">
-                        <select name="post[{{$key}}_arrival_second]" value="{{ $deferred_record->{$key.'_arrival_second'} }}">
+                        <input type="int" class="form-control col mx-2" name="post[{{ $key }}_arrival_minute]" value="{{ $deferred_record->{$key.'_arrival_minute'} }}">
+                        <select class="form-select col mx-2" name="post[{{$key}}_arrival_second]" value="{{ $deferred_record->{$key.'_arrival_second'} }}">
                             <option value="{{ $deferred_record->{$key.'_arrival_second'} }}">{{ $deferred_record->{$key.'_arrival_second'} }}</option>
                             <option value=" ">-</option>
                             <option value="00">00</option>
                             <option value="30">30</option>
-                        </select><br>
+                        </select>
+                    </div>
                     @endforeach
-                    <label>事由</label>
-                    <label>
-                        ※再選択
-                    </label>
+                    <label class="form-label mt-4">事由</label>
+                    <div class="row">
                    @foreach($occurrence_reasons as $occurrence_reason)
-                        <label>
-                                <input type="checkbox" name="reasons_array[]" value="{{ $occurrence_reason->id }}" {{$occurrence_reason->reasonCompare($occurrence_reason->id, $deferred_record->occurrencereason)}}>
+                        <label class="form-label col-md-auto ms-2">
+                            <input type="checkbox" class="form-check col-md-auto me-2" name="reasons_array[]" value="{{ $occurrence_reason->id }}" {{$occurrence_reason->reasonCompare($occurrence_reason->id, $deferred_record->occurrencereason)}}>
                                 {{ $occurrence_reason->occurrence_reason }}
                         </label><br>    
                     @endforeach
-                    <label for="remarks">備考</label><br>
-                    <textarea name="post[remarks]" >{{ $deferred_record->remarks }}</textarea><br>
-                    
+                    </div>
+                    <label for="remarks" class="form-label mt-4">備考</label><br>
+                    <textarea class="form-control" name="post[remarks]" >{{ $deferred_record->remarks }}</textarea><br>
                 </div>
-                <input type="submit" value="修正"/>
+                <div class="row justify-content-end">
+                    <input type="submit" class="btn btn-outline-primary btn-lg col-md-auto me-5" value="修正"/>
+                </div>
             </form>
-            
+        </div>
+        <div class="container" style="max-width: 40%;">
             <form id="form_{{$deferred_record->id}}" action="/deferred/{{$deferred_record->id}}" method="post">
                 @csrf
                 @method('DELETE')
                 
-                
-                <button type="button" onclick="deletePost({{ $deferred_record->id }})">削除</button> 
+                <div class="row justify-content-end">
+                    <button type="button" class="btn btn-outline-danger btn-lg col-md-auto m-3" onclick="deletePost({{ $deferred_record->id }})">削除</button>
+                </div>
             </form>
+            <div class="text-end m-3">
+                <a class="link-offset-2 mx-3" href="/deferred/table">遅延報告一覧</a>
+                <a class="link-offset-2 mx-3" href="/deferred/detail/{{$deferred_record->id}}">戻る</a>
+                <a class="link-offset-2 mx-3" href="/">トップへ</a>
+            </div>
             
-            <a href="/">トップへ</a>
-            <a href="/deferred/table">遅延報告　一覧</a>
-            <a href="/deferred/detail/{{$deferred_record->id}}">戻る</a>
         </div>
     </main>
     <script>

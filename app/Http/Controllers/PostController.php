@@ -86,20 +86,24 @@ class PostController extends Controller
     public function detail(DeferredRecord $deferred_record)
     {
         $user = User::where('employee_number', $deferred_record->employee_number)->first();
-        // user　社員番号で名前の検索　else追加　その他関連する箇所　未修正
-        if ($user) {
+
         $user_name = $user->name;
         return view('posts/deferred_detail', compact('user_name'))->with(['deferred_record' => $deferred_record]);
-        }
     }
     
     public function edit(DeferredRecord $deferred_record, OccurrenceReason $occurrencereason)
     {
         $user = User::where('employee_number', $deferred_record->employee_number)->first();
         // user　社員番号で名前の検索　else追加　その他関連する箇所　未修正
-        if ($user) {
+        $userId = $user->id;
+        $authUser = Auth::user();
+        $authUserId = $authUser->id;
+        
+        if ($userId == $authUserId) {
         $user_name = $user->name;
         return view('posts.deferred_edit', compact('user_name'), ['stations' => $this->stations])->with(['deferred_record' => $deferred_record, 'occurrence_reasons' => $occurrencereason->get()]);
+        }else{
+            return redirect('/')->with('success', 'あなたはこの報告書を変更することはできません');
         }
     }
     

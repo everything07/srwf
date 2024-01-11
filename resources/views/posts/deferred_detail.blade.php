@@ -49,16 +49,17 @@
         </div>
     </div>
     <main>
-        <div>
-            <h1>列車遅延報告</h1>
+        <div class="container mt-4">
+            <div class="card">
+            <h1 class="text-center fs-4 mt-4">列車遅延報告</h1>
                 <div>
-                    <div>
-                        <lavel>社員番号__{{$deferred_record['employee_number']}}</lavel><br>
-                        <lavel>名前__{{$user_name}}</lavel><br>
-                        <lavel>報告日__{{$deferred_record['report_date']}}</lavel><br>
-                        <lavel>仕業__{{$deferred_record['job_number']}}</lavel><br>
+                    <div class="row justify-content-end mt-4">
+                        <lavel class="col-2">仕業__{{$deferred_record['job_number']}}</lavel><br>
+                        <lavel class="col-2">社員番号__{{$deferred_record['employee_number']}}</lavel><br>
+                        <lavel class="col-2">名前__{{$user_name}}</lavel><br>
+                        <lavel class="col-2">報告日__{{$deferred_record['report_date']}}</lavel><br>
                     </div>
-                    <table>
+                    <table class="table table-striped table-bordered text-center mt-4">
                         <tr>
                             <th>列番</th><th>車号</th>
                             <th>品着</th><th>品発</th>
@@ -85,25 +86,31 @@
                             <td>{{$deferred_record->formatTime("osaki_arrival")}}</td>
                         </tr>
                     </table>
-                    <div>
-                        <lavel>事由</lavel><br>
-                        <p>
-                            @foreach($deferred_record->occurrencereason as $occurrencereason)
-                            {{$occurrencereason->occurrence_reason}}
-                            @endforeach
-                        </p>
-                        
-                        <lavel>備考</lavel>
-                        <p>{{$deferred_record['remarks']}}</p>
+                    <div class="text-center mt-4">
+                        <lavel class="fs-5 mt-2">事由</lavel><br>
+                        <div class="row justify-content-center my-2">
+                        @foreach($deferred_record->occurrencereason as $occurrencereason)
+                            <p class="col-md-auto">{{$occurrencereason->occurrence_reason}}</p>
+                        @endforeach
+                        </div>
+                        <lavel class="fs-5 mt-4">備考</lavel>
+                        <p class="mt-2">{{$deferred_record['remarks']}}</p>
+                    </div>
+                    <div class="d-grid justify-content-md-end m-5">
+                        <div>
+                            <a class="btn btn-warning" href="/deferred/edit/{{$deferred_record->id}}">修正・削除</a>
+                        </div>
                     </div>
                 </div>
+            </div>
+            <div>
+                <div class="text-end m-3">
+                    <a class="link-offset-2" href="/deferred/table">戻る</a>
+                    <a class="link-offset-2" href="/">トップへ</a>
+                </div>
+            </div>
         </div>
     </main>
-    <div>
-        <a href="/">トップへ</a><br>
-        <a href="/deferred/table">戻る</a><br>
-        <a href="/deferred/edit/{{$deferred_record->id}}">修正・削除</a><br>
-    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </x-app-layout>
