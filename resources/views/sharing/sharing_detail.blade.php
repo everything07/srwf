@@ -38,7 +38,7 @@
         </div>
     </saide>
     <div class="container mt-2">
-        <h2 class="fs-4 mt-4">報告内容</h2>
+        <h2 class="fs-3 mt-4">報告内容</h2>
         <div class="row ">
             <div class="col-2">
                 <div class="list-group">
@@ -48,33 +48,40 @@
             </div>
         </div>
     </div>
-    <main>
-        <div>
-            <h2>タイトル：{{$crewingdiary->title}}</h2>  
-        <div>
-            <p>役職：{{$crewingdiary->job_title}}</p>
-            <p>天気：{{$crewingdiary->weather}}</p>
-            <p>時間帯：{{$crewingdiary->time_period}}</p>
+    <main class="container">
+        <div class="card mt-4">
+            <div class="card-body">
+                <div class="m-5">
+                    <h2 class="card-title border-bottom fs-3">{{$crewingdiary->title}}</h2>
+                    <div class="row justify-content-end fs-5 mt-3">
+                        <p class="card-text border-bottom col-md-auto">役職：{{$crewingdiary->job_title}}</p>
+                        <p class="card-text border-bottom col-md-auto">天気：{{$crewingdiary->weather}}</p>
+                        <p class="card-text border-bottom col-md-auto">時間帯：{{$crewingdiary->time_period}}</p>
+                    </div>
+                    <div class="mt-5">
+                        <p class="card-text fs-5 mt-2">{!! nl2br($crewingdiary->body)!!}</p>
+                    </div>
+                    <div class="mt-5">
+                        <div class="row">
+                        @foreach($crewingdiary->tags as $tag)
+                            <p class="col-md-auto me-2">
+                                #{{$tag->tag}}
+                            </p>
+                        @endforeach
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <lavel class="card-text">共感：{{$crewingdiary->likesCount($crewingdiary->id)}}</lavel>
+                    </div>
+                    <div class="text-end mt-4">
+                        <a class="btn btn-outline-warning" href="/crewing_diary/editRepost/{{$crewingdiary->id}}">編集・再投稿</a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div>
-            <p>本文：{!! nl2br($crewingdiary->body)!!}</p>
-            </div>
-            <div>
-                <p>タグ：
-                    @foreach($crewingdiary->tags as $tag)
-                        #{{$tag->tag}}
-                    @endforeach
-                </p>
-            </div>
-            <div>
-                <lavel>共感:{{$crewingdiary->likesCount($crewingdiary->id)}}</lavel><br>
-                <br>
-            </div>
-            <div>
-                <a href="/">トップへ</a><br>
-                <a href="/crewing_diary/list">戻る</a><br>
-                <a href="/crewing_diary/editRepost/{{$crewingdiary->id}}">編集・再投稿</a>
-            </div>
+        <div class="text-end m-3">
+            <a class="btn btn-outline-primary" href="/">トップへ</a>
+            <a class="btn btn-outline-primary ms-3" href="/crewing_diary/list">戻る</a>
         </div>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
