@@ -98,7 +98,7 @@ class PostController extends Controller
         $userId = $user->id;
         $authUser = Auth::user();
         $authUserId = $authUser->id;
-        
+        // dd($userId,$authUserId );
         if ($userId == $authUserId) {
         $user_name = $user->name;
         return view('posts.deferred_edit', compact('user_name'), ['stations' => $this->stations])->with(['deferred_record' => $deferred_record, 'occurrence_reasons' => $occurrencereason->get()]);

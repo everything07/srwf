@@ -48,41 +48,53 @@
             </div>
         </div>
     </div>
-    <main>
-        <div>
-            <h1>
+   <main class="container mt-4">
+        <div class="card border-info mb-3 mx-auto p-4">
+            <h1 class="card-header text-center fs-4 my-4">
                 乗務日記　投稿確認
             </h1>
             <form action="/crewing_diary/post" method="POST">
                 @csrf
                 
-                <label>役職</label>
-                {{$inputs['post']['job_title'] }}
-                <input type="hidden" name="post[job_title]" value="{{$inputs['post']['job_title'] }}"><br>
-                <br>
-                <label>天気</label>
-                 {{$inputs['post']['weather']}}
-                <input type="hidden" name="post[weather]" value="{{$inputs['post']['weather']}}"><br>
-                <br>
-                <label>時間帯</label>
-                 {{$inputs['post']['time_period']}}
-                <input type="hidden" name="post[time_period]" value="{{$inputs['post']['time_period']}}"><br>
-                <br>
-                <label>タイトル</label>
-                 {{$inputs['post']['title']}}
-                <input type="hidden" name="post[title]" value="{{$inputs['post']['title']}}"><br>
-                <br>
-                <label>本文</label>
-                 {{$inputs['post']['body']}}
-                <input type="hidden" name="post[body]" value="{{$inputs['post']['body']}}"><br>
-                <br>
-                <label>タグ</label>
-                 {{$inputs['tags']}}
-                <input type="hidden" name="tags" value="{{$inputs['tags']}}"><br>
-                <br>
                 
-                <input type="submit" value="投稿">
-                
+                    <div class="row mt-3">
+                        <label class="form-label col-md-auto fs-5">役職</label>
+                        <p class="col-md-auto">{{$inputs['post']['job_title'] }}</p>
+                        <input type="hidden" name="post[job_title]" value="{{$inputs['post']['job_title'] }}">
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="row mt-3">
+                        <label class="form-label col-md-auto fs-5">天気</label>
+                        <p class="col-md-auto">{{$inputs['post']['weather']}}</p>
+                        <input type="hidden" name="post[weather]" value="{{$inputs['post']['weather']}}">
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="row mt-3">
+                        <label class="form-label col-md-auto fs-5 ">時間帯</label>
+                        <p class="col-md-auto">{{$inputs['post']['time_period']}}</p>
+                    <input type="hidden" name="post[time_period]" value="{{$inputs['post']['time_period']}}">
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="row mt-3">
+                        <label class="form-label col-md-auto fs-5">タイトル</label>
+                        <p class="col-md-auto">{{$inputs['post']['title']}}</p>
+                        <input type="hidden" name="post[title]" value="{{$inputs['post']['title']}}">
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="row mt-3">
+                        <label class="form-label col-md-auto fs-5">本文</label>
+                        <p class="col-md-auto">{!! nl2br( $inputs['post']['body'] )!!}</p>
+                        <input type="hidden" name="post[body]" value="{{$inputs['post']['body']}}">
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="row mt-3">
+                        <label class="form-label col-md-auto fs-5">タグ</label>
+                        <p class="col-md-auto">{{$inputs['tags']}}</p>
+                        <input type="hidden" name="tags" value="{{$inputs['tags']}}">
+                    </div>
+                <div class="row justify-content-end mt-4">
+                    <input class="btn btn-outline-primary btn-lg col-md-auto me-5" type="submit" value="投稿">
+                </div>
             </form>
         </div>
     </main>

@@ -38,7 +38,7 @@
         </div>
     </saide>
     <div class="container mt-2">
-        <h2 class="fs-4 mt-4">報告内容</h2>
+        <h2 class="fs-3 mt-4">報告内容</h2>
         <div class="row ">
             <div class="col-2">
                 <div class="list-group">
@@ -48,31 +48,44 @@
             </div>
         </div>
     </div>
-    <main>
+    <main class="container">
         <div>
-            <h1>乗務日記 一覧</h1>
-            <div>
-                <!--検索機能-->
-                <form>
-                    <lavel>検索ワード</lavel>
-                    <input tyoe="texit" name="word">
-                    <lavel>完全一致のみ表示</lavel>
-                    <input type="checkbox" name="condition" value=1 ><br>
-                     <lavel>検索範囲を絞る</lavel><br>
-                    @foreach($columnNames as $key => $columnName)
-                    <lavel>{{$columnName}}</lavel>
-                    <input type="checkbox" name=columns[{{$key}}] value={{$key}} >&nbsp;&nbsp;&nbsp;
-                    @endforeach
-                    <lavel>タグ</lavel>
-                    <input type="checkbox" name="selectedTag" value=1>
-                    <br>
-                    <input type="submit" value="検索" >
-                </form>
+            <h1 class="text-center fs-3 mt-4">乗務日記 一覧</h1>
+            <div class="d-flex justify-content-end my-4">
+                <div class="card col-md-auto m-1">
+                    <!--検索機能-->
+                    <form>
+                        <div class="row m-2 align-items-center">
+                            <lavel class="form-label col-md-auto">検索ワード</lavel>
+                            <div class="col-md-auto">
+                                <input class="form-control me-2" type="search" name="word">
+                            </div>
+                            <div class="dropdown col-md-auto">
+                                <button class="btn btn-outline-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">検索範囲を絞る</button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <lavel class="form-label col-md-auto">完全一致のみ表示</lavel>
+                                        <input class="col-md-auto" type="checkbox" name="condition" value=1 >
+                                    </li>
+                                    @foreach($columnNames as $key => $columnName)
+                                    <li>
+                                        <lavel class="form-label col-md-auto">{{$columnName}}</lavel>
+                                        <input type="checkbox" name=columns[{{$key}}] value={{$key}} >&nbsp;&nbsp;&nbsp;
+                                    </li>
+                                    @endforeach
+                                    <li>
+                                        <lavel class="form-label col-md-auto">タグ</lavel>
+                                        <input type="checkbox" name="selectedTag" value=1>
+                                    </li>
+                                </ul>
+                            </div>
+                        
+                            <input class="btn btn-outline-success col-md-auto" type="submit" value="検索" >
+                        </div>
+                    </form>
+                </div>
             </div>
             <div>
-                <br>
-                <h1>乗務日記</h1>
-                <br>
                 <div>
                     @if (session('success'))
                         <div class="alert alert-success">
@@ -80,62 +93,59 @@
                         </div>
                     @endif
                 </div>
-                <br>
-                <br>
                 <div>
                     @foreach($crewingdiarys as $crewingdiary)
-                    <div>
-                        <h2><a href="/crewing_diary/detail/{{$crewingdiary->id}}" >タイトル：{{$crewingdiary->title}}</a></h2>
-                        <div>
-                            <p>役職：{{$crewingdiary->job_title}}</p>
-                            <p>天気：{{$crewingdiary->weather}}</p>
-                            <p>時間帯：{{$crewingdiary->time_period}}</p>
-                        </div>
-                        <div>
-                           <p>本文：{!! nl2br( mb_strimwidth($crewingdiary->body, 0, 100, "...") )!!}</p>
-                        </div>
-                        <div>
-                            <p>タグ：
-                            
-                            @foreach($crewingdiary->tags as $tag)
-                            {{$tag->tag}}
-                            @endforeach
-                            </p>
-                        </div>
-                        <div>
-                            <lavel>共感:{{$crewingdiary->likesCount($crewingdiary->id)}}</lavel>
-                            @if($crewingdiary->isLikedByUser(Auth::id()))
-                                <form action="/crewing_diary/toggleLike/{{ $crewingdiary->id }}" method="post">
-                                    @csrf
-                                    <button type="submit">いいね解除</button>
-                                </form>
-                            @else
-                                <form action="/crewing_diary/toggleLike/{{ $crewingdiary->id }}" method="post">
-                                    @csrf
-                                    <button type="submit">いいね</button>
-                                </form>
-
-                            @endif
-                            
-                        </div>
-                        <div>
-                            @if( $crewingdiary->user_id == Auth::user()->id )
-                                <form action="/crewing_diary/delete/{{ $crewingdiary->id }}" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit">削除</button>
-                                </form>
-                            @else
-                                <form action="/crewing_diary/deletingOrder/{{ $crewingdiary->id }}" method="post">
-                                    @csrf
-                                    @method('PUT')
-                                    <button type="submit">削除依頼</button>
-                                </form>
-                            @endif
-                            
+                    <div class="card mt-4">
+                        <div class="card-body">
+                            <h2 class="card-title fs-3"><a href="/crewing_diary/detail/{{$crewingdiary->id}}" >タイトル：{{$crewingdiary->title}}</a></h2>
+                            <div>
+                                <p class="card-text mt-2">役職：{{$crewingdiary->job_title}}</p>
+                                <p class="card-text mt-2">天気：{{$crewingdiary->weather}}</p>
+                                <p class="card-text mt-2">時間帯：{{$crewingdiary->time_period}}</p>
+                            </div>
+                            <div>
+                               <p class="card-text mt-2">本文：{!! nl2br( mb_strimwidth($crewingdiary->body, 0, 50, "...") )!!}</p>
+                            </div>
+                            <div>
+                                <p class="card-text mt-2">タグ：
+                                    @foreach($crewingdiary->tags as $tag)
+                                    {{$tag->tag}}
+                                    @endforeach
+                                </p>
+                            </div>
+                            <div class="mt-2">
+                                <lavel class="card-text">共感:{{$crewingdiary->likesCount($crewingdiary->id)}}</lavel>
+                                <div class="mt-2">
+                                    @if($crewingdiary->isLikedByUser(Auth::id()))
+                                        <form action="/crewing_diary/toggleLike/{{ $crewingdiary->id }}" method="post">
+                                            @csrf
+                                            <button class="btn btn-outline-primary" type="submit">いいね解除</button>
+                                        </form>
+                                    @else
+                                        <form action="/crewing_diary/toggleLike/{{ $crewingdiary->id }}" method="post">
+                                            @csrf
+                                            <button class="btn btn-outline-primary" type="submit">いいね</button>
+                                        </form>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-end m-3">
+                                @if( $crewingdiary->user_id == Auth::user()->id )
+                                    <form action="/crewing_diary/delete/{{ $crewingdiary->id }}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-outline-primary" type="submit">削除</button>
+                                    </form>
+                                @else
+                                    <form action="/crewing_diary/deletingOrder/{{ $crewingdiary->id }}" method="post">
+                                        @csrf
+                                        @method('PUT')
+                                        <button class="btn btn-outline-primary" type="submit">削除依頼</button>
+                                    </form>
+                                @endif
+                            </div>
                         </div>
                     </div>
-                    <br>
                     @endforeach
                 </div>
             </div>
@@ -143,7 +153,7 @@
                 {{ $crewingdiarys->links() }}
             </div>
         </div>
-           <a href="/">トップへ</a>
+           <a class="btn btn-outline-primary" href="/">トップへ</a>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
