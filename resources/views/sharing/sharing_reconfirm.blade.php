@@ -48,10 +48,10 @@
             </div>
         </div>
     </div>
-    <main>
-        <div>
-            <h1>
-                乗務日記　投稿確認
+    <main class="container mt-4">
+        <div class="card border-info mb-3 mx-auto p-4">
+            <h1 class="card-header text-center fs-4 my-4">
+                乗務日記　編集確認
             </h1>
             <form action="/crewing_diary/repost/{{$crewingdiary->id}}" method="POST">
                 @method('PUT')
@@ -59,33 +59,44 @@
                 
                 <input type="hidden" name="post[id]" value="{{ session('reconfirm_data.post.id') }}">
                 
-                <label>役職</label>
-                {{ session('reconfirm_data.post.job_title') }}
-                <input type="hidden" name="post[job_title]" value="{{ session('reconfirm_data.post.job_title') }}"><br>
-                
-                <label>天気</label>
-                {{ session('reconfirm_data.post.weather') }}
-                <input type="hidden" name="post[weather]" value="{{ session('reconfirm_data.post.weather') }}"><br>
-                
-                <label>時間帯</label>
-                {{ session('reconfirm_data.post.time_period') }}
-                <input type="hidden" name="post[time_period]" value="{{ session('reconfirm_data.post.time_period') }}"><br>
-                
-                <label>タイトル</label>
-                {{ session('reconfirm_data.post.title') }}
-                <input type="hidden" name="post[title]" value="{{ session('reconfirm_data.post.title') }}"><br>
-                
-                <label>本文</label>
-                {{ session('reconfirm_data.post.body') }}
-                <input type="hidden" name="post[body]" value="{{ session('reconfirm_data.post.body') }}"><br>
-                
-                <label>タグ</label>
-                {{ session('reconfirm_data.tags') }}
-                <input type="hidden" name="tags" value="{{ session('reconfirm_data.tags') }}"><br>
-                <br>
-                
-                <input type="submit" value="投稿">
-                
+                <div class="row mt-3">
+                    <label class="form-label col-1 fs-5">役職</label>
+                    <p class="col-md-auto">{{ session('reconfirm_data.post.job_title') }}</p>
+                    <input type="hidden" name="post[job_title]" value="{{ session('reconfirm_data.post.job_title') }}">
+                </div>
+                <div class="w-100"></div>
+                <div class="row mt-3">
+                    <label class="form-label col-1 fs-5">天気</label>
+                    <p class="col-md-auto">{{ session('reconfirm_data.post.weather') }}</p>
+                    <input type="hidden" name="post[weather]" value="{{ session('reconfirm_data.post.weather') }}">
+                </div>
+                <div class="w-100"></div>
+                <div class="row mt-3">
+                    <label class="form-label col-1 fs-5 ">時間帯</label>
+                    <p class="col-md-auto">{{ session('reconfirm_data.post.time_period') }}</p>
+                    <input type="hidden" name="post[time_period]" value="{{ session('reconfirm_data.post.time_period') }}">
+                 </div>
+                <div class="w-100"></div>
+                <div class="row mt-3">
+                    <label class="form-label col-1 fs-5">タイトル</label>
+                    <p class="col-md-auto">{{ session('reconfirm_data.post.title') }}</p>
+                    <input type="hidden" name="post[title]" value="{{ session('reconfirm_data.post.title') }}">
+                </div>
+                <div class="w-100"></div>
+                <div class="row mt-3">
+                    <label class="form-label col-1 fs-5">本文</label>
+                    <p class="col-md-auto">{!! nl2br( session('reconfirm_data.post.body') )!!}</p>
+                    <input type="hidden" name="post[body]" value="{{ session('reconfirm_data.post.body') }}">
+                </div>
+                <div class="w-100"></div>
+                <div class="row mt-3">
+                    <label class="form-label col-1 fs-5">タグ</label>
+                    <p class="col-md-auto">{{ session('reconfirm_data.tags') }}</P>
+                    <input type="hidden" name="tags" value="{{ session('reconfirm_data.tags') }}">
+                </div>
+                <div class="row justify-content-end mt-4">
+                    <input class="btn btn-outline-primary btn-lg col-md-auto me-5" type="submit" value="投稿">
+                </div>
             </form>
         </div>
     </main>

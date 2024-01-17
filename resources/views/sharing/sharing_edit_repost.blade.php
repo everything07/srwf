@@ -48,52 +48,63 @@
             </div>
         </div>
     </div>
-    <main>
+    <main class="container mt-4">
+        <div class="card border-info mb-3 mx-auto p-4">
+            <h1 class="card-header text-center fs-4 my-4">
+                乗務日記　編集
+            </h1>
         <form action="/crewing_diary/reconfirm/{{$crewingdiary->id}}" method="POST">
                 @csrf
                 
                 <input type="hidden" name="post[id]" value="{{$crewingdiary->id}}">
-                
-                <label>役職</label>
-                <select name="post[job_title]"> 
-                    <option value="{{$crewingdiary->job_title}}">{{$crewingdiary->job_title}}</option>
-                    <option value="運転士">運転士</option>
-                    <option value="車掌">車掌</option>
-                    <option value="駅係員">駅係員</option>
-                </select><br>
-                <label>天気</label>
-                <select name="post[weather]">
-                    <option value="{{$crewingdiary->weather}}">{{$crewingdiary->weather}}</option>
-                    <option value="晴れ">晴れ</option>
-                    <option value="曇り">曇り</option>
-                    <option value="雨">雨</option>
-                    <option value="雪">雪</option>
-                </select><br>
-                <label>時間帯</label>
-                <select name="post[time_period]">
-                    <option value="{{$crewingdiary->time_period}}">{{$crewingdiary->time_period}}</option>
-                    <option value="早朝">早朝</option>
-                    <option value="朝ラッシュ">朝ラッシュ</option>
-                    <option value="オフピーク">オフピーク</option>
-                    <option value="夕ラッシュ">夕ラッシュ</option>
-                    <option value="深夜">深夜</option>
-                    <option value="休日">休日</option>
-                    <option value="臨時">臨時</option>
-                </select><br>
-                <label>タイトル</label>
-                <input type="text" name="post[title]" value="{{$crewingdiary->title}}"><br>
-                <label>本文</label>
-                <textarea rows="10" cols="33" name="post[body]">{{$crewingdiary->body}}</textarea><br>
-                <label>タグ</label>
-                <input type="text" name="tags" value="{{$tagsAsString}}"><br>
-            
-                <input type="submit" value="編集・再投稿"/>
-            
-            </form> 
-            <div>
-                <a href="/">トップへ</a><br>
-                <a href="/crewing_diary">戻る</a><br>
+                <div class="row justify-content-center">
+                    <label class="form-label col-md-auto fs-5 mt-3">役職</label>
+                    <div class="col-auto mt-3">
+                        <select class="form-select" name="post[job_title]"> 
+                            <option value="{{$crewingdiary->job_title}}">{{$crewingdiary->job_title}}</option>
+                            <option value="運転士">運転士</option>
+                            <option value="車掌">車掌</option>
+                            <option value="駅係員">駅係員</option>
+                        </select>
+                    </div>
+                    <label class="form-label col-md-auto fs-5 ms-4 mt-3">天気</label>
+                    <div class="col-auto mt-3">
+                        <select class="form-select" name="post[weather]">
+                            <option value="{{$crewingdiary->weather}}">{{$crewingdiary->weather}}</option>
+                            <option value="晴れ">晴れ</option>
+                            <option value="曇り">曇り</option>
+                            <option value="雨">雨</option>
+                            <option value="雪">雪</option>
+                        </select>
+                    </div>
+                <label class="form-label col-md-auto fs-5 ms-4 mt-3">時間帯</label>
+                <div class="col-auto mt-3">
+                        <select class="form-select" name="post[time_period]">
+                            <option value="{{$crewingdiary->time_period}}">{{$crewingdiary->time_period}}</option>
+                            <option value="早朝">早朝</option>
+                            <option value="朝ラッシュ">朝ラッシュ</option>
+                            <option value="オフピーク">オフピーク</option>
+                            <option value="夕ラッシュ">夕ラッシュ</option>
+                            <option value="深夜">深夜</option>
+                            <option value="休日">休日</option>
+                            <option value="臨時">臨時</option>
+                        </select>
+                    </div>
+                </div>
+                <label class="form-label fs-5 mt-3">タイトル</label>
+                <input class="form-control my-2" type="text" name="post[title]" value="{{$crewingdiary->title}}">
+                <label class="form-label fs-5 mt-3">本文</label>
+                <textarea class="form-control my-2" rows="10" cols="33" name="post[body]">{{$crewingdiary->body}}</textarea><br>
+                <label class="form-label fs-5 mt-3">タグ</label>
+                <input class="form-control my-2" type="text" name="tags" value="{{$tagsAsString}}">
+            <div class="row justify-content-end mt-4">
+                <input class="btn btn-outline-primary btn-lg col-md-auto me-5"type="submit" value="編集・再投稿"/>
             </div>
+            </form> 
+        </div>
+        <div class="text-end m-3">
+            <a class="btn btn-outline-primary" href="/">トップへ</a>
+            <a class="btn btn-outline-primary ms-3" href="/crewing_diary/detail/{{$crewingdiary->id}}">戻る</a>
         </div>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
