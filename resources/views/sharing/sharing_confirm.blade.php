@@ -56,42 +56,41 @@
             <form action="/crewing_diary/post" method="POST">
                 @csrf
                 
-                
-                    <div class="row mt-3">
-                        <label class="form-label col-md-auto fs-5">役職</label>
-                        <p class="col-md-auto">{{$inputs['post']['job_title'] }}</p>
-                        <input type="hidden" name="post[job_title]" value="{{$inputs['post']['job_title'] }}">
-                    </div>
-                    <div class="w-100"></div>
-                    <div class="row mt-3">
-                        <label class="form-label col-md-auto fs-5">天気</label>
-                        <p class="col-md-auto">{{$inputs['post']['weather']}}</p>
-                        <input type="hidden" name="post[weather]" value="{{$inputs['post']['weather']}}">
-                    </div>
-                    <div class="w-100"></div>
-                    <div class="row mt-3">
-                        <label class="form-label col-md-auto fs-5 ">時間帯</label>
-                        <p class="col-md-auto">{{$inputs['post']['time_period']}}</p>
+                <div class="row mt-3">
+                    <label class="form-label col-1 fs-5">役職</label>
+                    <p class="col-md-auto">{{$inputs['post']['job_title'] }}</p>
+                    <input type="hidden" name="post[job_title]" value="{{$inputs['post']['job_title'] }}">
+                </div>
+                <div class="w-100"></div>
+                <div class="row mt-3">
+                    <label class="form-label col-1 fs-5">天気</label>
+                    <p class="col-md-auto">{{$inputs['post']['weather']}}</p>
+                    <input type="hidden" name="post[weather]" value="{{$inputs['post']['weather']}}">
+                </div>
+                <div class="w-100"></div>
+                <div class="row mt-3">
+                    <label class="form-label col-1 fs-5 ">時間帯</label>
+                    <p class="col-md-auto">{{$inputs['post']['time_period']}}</p>
                     <input type="hidden" name="post[time_period]" value="{{$inputs['post']['time_period']}}">
-                    </div>
-                    <div class="w-100"></div>
-                    <div class="row mt-3">
-                        <label class="form-label col-md-auto fs-5">タイトル</label>
-                        <p class="col-md-auto">{{$inputs['post']['title']}}</p>
-                        <input type="hidden" name="post[title]" value="{{$inputs['post']['title']}}">
-                    </div>
-                    <div class="w-100"></div>
-                    <div class="row mt-3">
-                        <label class="form-label col-md-auto fs-5">本文</label>
-                        <p class="col-md-auto">{!! nl2br( $inputs['post']['body'] )!!}</p>
-                        <input type="hidden" name="post[body]" value="{{$inputs['post']['body']}}">
-                    </div>
-                    <div class="w-100"></div>
-                    <div class="row mt-3">
-                        <label class="form-label col-md-auto fs-5">タグ</label>
-                        <p class="col-md-auto">{{$inputs['tags']}}</p>
-                        <input type="hidden" name="tags" value="{{$inputs['tags']}}">
-                    </div>
+                </div>
+                <div class="w-100"></div>
+                <div class="row mt-3">
+                    <label class="form-label col-1 fs-5">タイトル</label>
+                    <p class="col-md-auto">{{$inputs['post']['title']}}</p>
+                    <input type="hidden" name="post[title]" value="{{$inputs['post']['title']}}">
+                </div>
+                <div class="w-100"></div>
+                <div class="row mt-3">
+                    <label class="form-label col-1 fs-5">本文</label>
+                    <p class="col-md-auto">{!! nl2br( $inputs['post']['body'] )!!}</p>
+                    <input type="hidden" name="post[body]" value="{{$inputs['post']['body']}}">
+                </div>
+                <div class="w-100"></div>
+                <div class="row mt-3">
+                    <label class="form-label col-1 fs-5">タグ</label>
+                    <p class="col-md-auto">{{$inputs['tags']}}</p>
+                    <input type="hidden" name="tags" value="{{$inputs['tags']}}">
+                </div>
                 <div class="row justify-content-end mt-4">
                     <input class="btn btn-outline-primary btn-lg col-md-auto me-5" type="submit" value="投稿">
                 </div>

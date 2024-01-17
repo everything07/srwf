@@ -104,7 +104,7 @@
                                 <p class="card-text mt-2">時間帯：{{$crewingdiary->time_period}}</p>
                             </div>
                             <div>
-                               <p class="card-text mt-2">本文：{!! nl2br( mb_strimwidth($crewingdiary->body, 0, 50, "...") )!!}</p>
+                                <p class="card-text mt-2">本文：{!! nl2br( mb_strimwidth($crewingdiary->body, 0, 50, "...") )!!}</p>
                             </div>
                             <div>
                                 <p class="card-text mt-2">タグ：
