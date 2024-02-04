@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\DeferredRecord;
 use App\Models\OccurrenceReason;
 use Illuminate\Http\Request;
+use App\Http\Requests\PostRequest;
 use Illuminate\Support\Facades\Session;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -50,7 +51,7 @@ class PostController extends Controller
         // return view('posts.deferred_report', compact('user_name'), ['stations' => $this->stations])->with(['occurrence_reasons' => $occurrencereason->get()]);
     }
         
-    public function store(Request $request, DeferredRecord $deferred_record)
+    public function store(PostRequest $request, DeferredRecord $deferred_record)
     {
        $input_post = $request['post'];
        $input_reasons = $request->reasons_array;
@@ -107,7 +108,7 @@ class PostController extends Controller
         }
     }
     
-    public function update(Request $request, DeferredRecord $deferred_record)
+    public function update(PostRequest $request, DeferredRecord $deferred_record)
     {
         $input_post = DeferredRecord::find($deferred_record->id);
 

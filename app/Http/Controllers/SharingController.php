@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\DeletingOrder;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Http\Requests\SharingRequest;
 
 
 
@@ -26,7 +27,7 @@ class SharingController extends Controller
 
     }
     
-    public function confirm(Request $request)
+    public function confirm(SharingRequest $request)
     {
         $inputs=$request->all();
         
@@ -115,7 +116,7 @@ class SharingController extends Controller
         return view('sharing.sharing_edit_repost', compact('tagsAsString'))->with(['crewingdiary' => $crewingdiary, 'tags' => $tag->get()]);
     }
     
-    public function reconfirm(Request $request, CrewingDiary $crewingdiary)
+    public function reconfirm(SharingRequest $request, CrewingDiary $crewingdiary)
     {
         $inputs = $request->all();
         

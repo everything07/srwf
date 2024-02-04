@@ -53,6 +53,15 @@
             <h1 class="card-header text-center fs-4 my-4">
                 乗務日記　編集
             </h1>
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                    </ul>
+                </div>
+            @endif
         <form action="/crewing_diary/reconfirm/{{$crewingdiary->id}}" method="POST">
                 @csrf
                 
@@ -62,32 +71,32 @@
                     <div class="col-auto mt-3">
                         <select class="form-select" name="post[job_title]"> 
                             <option value="{{$crewingdiary->job_title}}">{{$crewingdiary->job_title}}</option>
-                            <option value="運転士">運転士</option>
-                            <option value="車掌">車掌</option>
-                            <option value="駅係員">駅係員</option>
+                            <option value="運転士" {{ old('post.job_title') == '運転士' ? 'selected' : '' }}>運転士</option>
+                            <option value="車掌" {{ old('post.job_title') == '車掌' ? 'selected' : '' }}>車掌</option>
+                            <option value="駅係員" {{ old('post.job_title') == '駅係員' ? 'selected' : '' }}>駅係員</option>
                         </select>
                     </div>
                     <label class="form-label col-md-auto fs-5 ms-4 mt-3">天気</label>
                     <div class="col-auto mt-3">
                         <select class="form-select" name="post[weather]">
                             <option value="{{$crewingdiary->weather}}">{{$crewingdiary->weather}}</option>
-                            <option value="晴れ">晴れ</option>
-                            <option value="曇り">曇り</option>
-                            <option value="雨">雨</option>
-                            <option value="雪">雪</option>
+                            <option value="晴れ" {{ old('post.weather') == '晴れ' ? 'selected' : '' }}>晴れ</option>
+                            <option value="曇り" {{ old('post.weather') == '曇り' ? 'selected' : '' }}>曇り</option>
+                            <option value="雨" {{ old('post.weather') == '雨' ? 'selected' : '' }}>雨</option>
+                            <option value="雪" {{ old('post.weather') == '雪' ? 'selected' : '' }}>雪</option>
                         </select>
                     </div>
                 <label class="form-label col-md-auto fs-5 ms-4 mt-3">時間帯</label>
                 <div class="col-auto mt-3">
                         <select class="form-select" name="post[time_period]">
                             <option value="{{$crewingdiary->time_period}}">{{$crewingdiary->time_period}}</option>
-                            <option value="早朝">早朝</option>
-                            <option value="朝ラッシュ">朝ラッシュ</option>
-                            <option value="オフピーク">オフピーク</option>
-                            <option value="夕ラッシュ">夕ラッシュ</option>
-                            <option value="深夜">深夜</option>
-                            <option value="休日">休日</option>
-                            <option value="臨時">臨時</option>
+                            <option value="早朝" {{ old('post.time_period') == '早朝' ? 'selected' : '' }}>早朝</option>
+                            <option value="朝ラッシュ" {{ old('post.time_period') == '朝ラッシュ' ? 'selected' : '' }}>朝ラッシュ</option>
+                            <option value="オフピーク" {{ old('post.time_period') == 'オフピーク' ? 'selected' : '' }}>オフピーク</option>
+                            <option value="夕ラッシュ" {{ old('post.time_period') == '夕ラッシュ' ? 'selected' : '' }}>夕ラッシュ</option>
+                            <option value="深夜" {{ old('post.time_period') == '深夜' ? 'selected' : '' }}>深夜</option>
+                            <option value="休日" {{ old('post.time_period') == '休日' ? 'selected' : '' }}>休日</option>
+                            <option value="臨時" {{ old('post.time_period') == '臨時' ? 'selected' : '' }}>臨時</option>
                         </select>
                     </div>
                 </div>

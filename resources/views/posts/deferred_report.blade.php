@@ -56,15 +56,20 @@
                 <div>
                     <div class="row justify-content-end">
                         <label class="form-label col-md-auto mx-2">社員番号<input type="hidden" name="post[employee_number]" value={{ $employee_number }}>{{ $employee_number }}：名前{{$user_name}}　</label>
+                        <p class="title__error" style="color:red">{{ $errors->first('post.employee_number') }}</p>
                     </div>
-                    <label class="form-label">列車番号</label>
-                    <input type="text" class="form-control" name="post[train_number]"><br>
-                    <label class="form-label">車両番号</label>
-                    <input type="text" class="form-control" name="post[cars_number]"><br>
-                    <label class="form-label">仕業</label>
-                    <input type="text" class="form-control" name="post[job_number]"><br>
-                    <label class="form-label">日付</label>
-                    <input type="date" class="form-control" name="post[report_date]" value={{date('Y-m-d') }}><br>
+                    <label class="form-label mt-3">列車番号</label>
+                    <input type="text" class="form-control" name="post[train_number]">
+                    <p class="title__error" style="color:red">{{ $errors->first('post.train_number') }}</p>
+                    <label class="form-label mt-3">車両番号</label>
+                    <input type="text" class="form-control" name="post[cars_number]">
+                    <p class="title__error" style="color:red">{{ $errors->first('post.cars_number') }}</p>
+                    <label class="form-label mt-3">仕業</label>
+                    <input type="text" class="form-control" name="post[job_number]">
+                    <p class="title__error" style="color:red">{{ $errors->first('post.job_number') }}</p>
+                    <label class="form-label mt-3">日付</label>
+                    <input type="date" class="form-control" name="post[report_date]" value={{date('Y-m-d') }}>
+                    <p class="title__error" style="color:red">{{ $errors->first('post.report_date') }}</p>
                 </div>
                 <div>
                     <div class="my-4">
@@ -89,21 +94,22 @@
                         </select>
                     </div>
                     @endforeach
-                    <label class="form-label mt-4">事由</label><br>
+                    <label class="form-label mt-4">事由</label>
                     <div class="row">
                         @foreach($occurrence_reasons as $occurrence_reason)
                             <lavel class="form-label col-md-auto ms-2">
                                 <input type="checkbox" class="form-check col-md-auto me-2" name="reasons_array[]" value="{{ $occurrence_reason->id}}">
                                     {{$occurrence_reason->occurrence_reason}}
-                                </input><br>
+                                </input>
                             </lavel>
                         @endforeach
                     </div>
-                    <label for="remarks" class="form-label mt-4">備考</label><br>
-                    <textarea class="form-control" name="post[remarks]" rows="4"></textarea><br>
+                    <label for="remarks" class="form-label mt-4">備考</label>
+                    <textarea class="form-control" name="post[remarks]" rows="4"></textarea>
+                    <p class="title__error" style="color:red">{{ $errors->first('post.remarks') }}</p>
                 </div>
                 <div class="row justify-content-end">
-                    <input type="submit" class="btn btn-outline-primary btn-lg col-md-auto me-5" value="報告"/>
+                    <input type="submit" class="btn btn-outline-primary btn-lg col-md-auto me-5 mt-4" value="報告"/>
                 </div>
             </form>
         </div>
