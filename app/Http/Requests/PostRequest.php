@@ -23,7 +23,6 @@ class PostRequest extends FormRequest
     {
         return [
             'post.report_date' => 'required',
-            'post.employee_number' => 'required',
             'post.train_number' => 'required',
             'post.cars_number' => 'required',
             'post.job_number' => 'required',
