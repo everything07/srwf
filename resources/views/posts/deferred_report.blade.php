@@ -56,7 +56,6 @@
                 <div>
                     <div class="row justify-content-end">
                         <label class="form-label col-md-auto mx-2">社員番号<input type="hidden" name="post[employee_number]" value={{ $employee_number }}>{{ $employee_number }}：名前{{$user_name}}　</label>
-                        <p class="title__error" style="color:red">{{ $errors->first('post.employee_number') }}</p>
                     </div>
                     <label class="form-label mt-3">列車番号</label>
                     <input type="text" class="form-control" name="post[train_number]">
