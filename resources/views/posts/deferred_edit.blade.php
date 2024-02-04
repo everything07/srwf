@@ -57,16 +57,20 @@
                
                 <div>
                     <div class="row justify-content-end">
-                        <lavel class="form-label col-md-auto mx-2">社員番号  {{ $deferred_record->employee_number }} : 名前  {{$user_name}}</lavel><br>
+                        <lavel class="form-label col-md-auto mx-2">社員番号  {{ $deferred_record->employee_number }} : 名前  {{$user_name}}</lavel>
                     </div>
-                    <label class="form-label">列車番号</label>
-                    <input type="text" class="form-control" name="post[train_number]" value="{{ $deferred_record->train_number }}"><br>
-                    <label class="form-label">車両番号</label>
-                    <input type="text" class="form-control" name="post[cars_number]" value="{{ $deferred_record->cars_number }}"><br>
-                    <label class="form-label">仕業</label>
-                    <input type="text" class="form-control" name="post[job_number]" value="{{ $deferred_record->job_number }}"><br>
-                    <label class="form-label">日付</label>
-                    <input type="date" class="form-control" name="post[report_date]" value="{{$deferred_record->report_date}}"><br>
+                    <label class="form-label mt-3">列車番号</label>
+                    <input type="text" class="form-control" name="post[train_number]" value="{{ $deferred_record->train_number }}">
+                    <p class="title__error" style="color:red">{{ $errors->first('post.train_number') }}</p>
+                    <label class="form-label mt-3">車両番号</label>
+                    <input type="text" class="form-control" name="post[cars_number]" value="{{ $deferred_record->cars_number }}">
+                    <p class="title__error" style="color:red">{{ $errors->first('post.cars_number') }}</p>
+                    <label class="form-label mt-3">仕業</label>
+                    <input type="text" class="form-control" name="post[job_number]" value="{{ $deferred_record->job_number }}">
+                    <p class="title__error" style="color:red">{{ $errors->first('post.job_number') }}</p>
+                    <label class="form-label mt-3">日付</label>
+                    <input type="date" class="form-control" name="post[report_date]" value="{{$deferred_record->report_date}}">
+                    <p class="title__error" style="color:red">{{ $errors->first('post.report_date') }}</p>
                 </div>
                 <div>
                     <div class="my-4">
@@ -99,14 +103,15 @@
                         <label class="form-label col-md-auto ms-2">
                             <input type="checkbox" class="form-check col-md-auto me-2" name="reasons_array[]" value="{{ $occurrence_reason->id }}" {{$occurrence_reason->reasonCompare($occurrence_reason->id, $deferred_record->occurrencereason)}}>
                                 {{ $occurrence_reason->occurrence_reason }}
-                        </label><br>    
+                        </label>
                     @endforeach
                     </div>
-                    <label for="remarks" class="form-label mt-4">備考</label><br>
-                    <textarea class="form-control" name="post[remarks]" >{{ $deferred_record->remarks }}</textarea><br>
+                    <label for="remarks" class="form-label mt-4">備考</label>
+                    <textarea class="form-control" name="post[remarks]" >{{ $deferred_record->remarks }}</textarea>
+                    <p class="title__error" style="color:red">{{ $errors->first('post.remarks') }}</p>
                 </div>
                 <div class="row justify-content-end">
-                    <input type="submit" class="btn btn-outline-primary btn-lg col-md-auto me-5" value="修正"/>
+                    <input type="submit" class="btn btn-outline-primary btn-lg col-md-auto me-5 mt-3" value="修正"/>
                 </div>
             </form>
         </div>
